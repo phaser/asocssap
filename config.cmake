@@ -10,7 +10,7 @@ set (PLATFORM_DEFAULT           "linux")
 set (PROJECT_TYPE_DEFAULT       "Unix Makefiles")
 
 # === TARGET
-set (CTARGET "SDLDemo-osx")
+set (CTARGET "testbed")
 list (APPEND TARGETS ${CTARGET})
 copy_target ("DEFAULT" ${CTARGET})
 set (TARGET_NAME_${CTARGET}     "${CTARGET}")
