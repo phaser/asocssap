@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 2.8)
 include (KRAL/config.cmake)
 
 set (KRAL_PATH      "${CMAKE_CURRENT_LIST_DIR}/KRAL/")
-set (PACKAGE_DIRS   "${CMAKE_CURRENT_LIST_DIR}/packages;${CMAKE_CURRENT_LIST_DIR}/thirdparty")
+set (PACKAGE_DIRS   "${CMAKE_CURRENT_LIST_DIR};${CMAKE_CURRENT_LIST_DIR}/packages")
 set (PROJECTS_ROOT_DIR  "${CMAKE_CURRENT_LIST_DIR}/projects")
 
 # Default target
@@ -23,5 +23,6 @@ set (CUSTOM_ARGS_${CTARGET}     "${CUSTOM_ARGS_${CTARGET}} -DRUNTIME_SUFFIX=/Deb
 set (CUSTOM_ARGS_${CTARGET}     "${CUSTOM_ARGS_${CTARGET}} -DIOS_SDK_PATH=\"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs\"")
 set (CUSTOM_ARGS_${CTARGET}     "${CUSTOM_ARGS_${CTARGET}} -DTARGETSDK=MacOSX10.8.sdk ")
 set (CUSTOM_ARGS_${CTARGET}     "${CUSTOM_ARGS_${CTARGET}} -DDEST_PREFIX=Debug ")
+set (CUSTOM_ARGS_${CTARGET}     "${CUSTOM_ARGS_${CTARGET}} -DTESTS=1 ")
 set (BUILD_TYPE_${CTARGET}      "debug")
 

@@ -424,13 +424,6 @@ macro(build_module)
 			    #Create a dummy cpp file so the project can compile we will link this project against the lib so the game runs
 			    set (DUMMY_CPP_FILE ${CMAKE_BINARY_DIR}/${NAME}Dummy.cpp)
 			    FILE (WRITE  ${DUMMY_CPP_FILE} "// Dummy file to build this project, please check LIB for sources\n")
-                FILE (APPEND ${DUMMY_CPP_FILE} "#ifdef _WIN32\n") # on iOS this fails under some configurations so disable it. MMGR works only on win anyways?
-			    FILE (APPEND ${DUMMY_CPP_FILE} "#include <array>\n") #This is a mini hack to redefine delete due to mmgr.lib link compiler problems (see FF-465)
-			    FILE (APPEND ${DUMMY_CPP_FILE} "#endif\n")
-			    FILE (APPEND ${DUMMY_CPP_FILE} "#include <core/FFApplication.h>\n")
-			    FILE (APPEND ${DUMMY_CPP_FILE} "void dummyFun() {\n")
-			    FILE (APPEND ${DUMMY_CPP_FILE} "IApp::Create(NULL);\n")
-			    FILE (APPEND ${DUMMY_CPP_FILE} "IApp::Release(NULL);\n}\n")
             endif ()
 
 			add_executable (${NAME} ${BUILD_OPTION} ${DUMMY_CPP_FILE})
@@ -628,8 +621,6 @@ IF(EXISTS "${CMAKE_CURRENT_LIST_DIR}/${TESTS_FOLDER}")
         set (BUILD_OPTION "")
     endif ()
 	
-    ADD_MSVC_PRECOMPILED_HEADER("${CMAKE_CURRENT_LIST_DIR}/${TESTS_FOLDER}/include/${AD_NAME}TestsPrecompile.h" "${CMAKE_CURRENT_LIST_DIR}/${TESTS_FOLDER}/source/common/${AD_NAME}TestsPrecompile.cpp" ${AD_NAME}_F_SOURCES)
-
  	add_executable (${TESTS_PROJECT} ${BUILD_OPTION} ${${AD_NAME}_F_INCLUDE} ${${AD_NAME}_F_SOURCES} ${${AD_NAME}_plaf_F_SOURCES})
     add_dependencies(KRAL_END_OF_BUILD_TARGET ${TESTS_PROJECT})
     if (ANDROID)
