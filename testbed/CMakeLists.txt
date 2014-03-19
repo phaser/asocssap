@@ -12,7 +12,9 @@ elseif (IOS)
     SET (BUILD_TYPE MACOSX_BUNDLE CACHE INTERNAL "Build type" FORCE)
 endif (WIN32)
 
+add_module_dependency(${PROJ_NAME} "euler" "")
+
 build_module(${PROJ_NAME} ${BUILD_TYPE})
 
-#link_module_dependencies(${PROJ_NAME})
+link_module_dependencies(${PROJ_NAME})
 
