@@ -1,8 +1,10 @@
-#include <problem_0001.h>
+#include <problems.h>
 #include <algorithm>
 #include <utils.h>
 #include <iostream>
 
+namespace problem_0001
+{
 struct do_sum
 {
     uint64_t& sum;
@@ -22,3 +24,4 @@ uint64_t solve_problem()
     std::for_each(r.begin(), r.end(), sum);
     return mysum;
 }
+}  // namespace problem_0001
