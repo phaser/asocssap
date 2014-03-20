@@ -18,6 +18,7 @@ uint64_t solve_problem()
     https://projecteuler.net/problem=1
     uint64_t mysum = 0;
     struct do_sum sum(mysum);
-    std::for_each(Iterator(0), Iterator(1000), sum);
+    range<0, 1000> r;
+    std::for_each(r.begin(), r.end(), sum);
     return mysum;
 }

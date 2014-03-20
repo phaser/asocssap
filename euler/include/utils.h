@@ -16,7 +16,7 @@ public:
     }
     Iterator& operator++()
     {
-        ++val;
+        val += step;
         return *this;
     }
     Iterator& operator++(int)
@@ -42,3 +42,15 @@ public:
     }
 };
 
+template <uint64_t f, uint64_t l>
+class range
+{
+    Iterator begin()
+    {
+        return Iterator(f);
+    }
+    Iterator end()
+    {
+        return Iterator(l);
+    }
+};
