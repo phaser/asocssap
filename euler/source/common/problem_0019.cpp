@@ -2,6 +2,7 @@
 
 namespace problem_0019
 {
+
 uint64_t solve_problem()
 {
     return 0;
