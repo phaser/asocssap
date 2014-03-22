@@ -1,7 +1,6 @@
 #include <problems.h>
 #include <algorithm>
 #include <utils.h>
-#include <iostream>
 
 namespace problem_0001
 {
