@@ -17,6 +17,7 @@ TEST_F(ProblemsTestClass, TestProblem_0002)  // NOLINT
 
 TEST_F(ProblemsTestClass, TestProblem_0019)  // NOLINT
 {
-    ASSERT_EQ(problem_0019::solve_problem(), 171);
+    ASSERT_EQ(problem_0019::solve_problem1(), 171);
+    ASSERT_EQ(problem_0019::solve_problem2(), 171);
 }
 

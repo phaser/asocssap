@@ -13,5 +13,6 @@ uint64_t solve_problem();
 
 namespace problem_0019
 {
-uint64_t solve_problem();
+uint64_t solve_problem1();
+uint64_t solve_problem2();
 }
