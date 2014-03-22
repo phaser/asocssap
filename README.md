@@ -21,3 +21,14 @@ To compile it:
 To build a target in a single step:
 
     cmake -DT=testbed -DBUILD=1 -P KRAL/builder.cmake
+
+Running tests
+=============
+
+To run all the tests use the following command:
+
+    projects/testbed-osx/euler/Debug/euler_tests
+
+To run specific tests:
+    
+    projects/testbed-osx/euler/Debug/euler_tests --gtest_filter=problem_0019
