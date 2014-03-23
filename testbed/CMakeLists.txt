@@ -13,6 +13,7 @@ elseif (IOS)
 endif (WIN32)
 
 add_module_dependency(${PROJ_NAME} "euler" "")
+add_module_dependency(${PROJ_NAME} "infoarena" "")
 
 build_module(${PROJ_NAME} ${BUILD_TYPE})
 
