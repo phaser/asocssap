@@ -21,6 +21,6 @@ TEST_F(ProblemsTestClass, TestProblem_euclid2)  // NOLINT
 TEST_F(ProblemsTestClass, TestProblem_cautbin)  // NOLINT
 {
     std::vector<int> a{1, 3, 3, 3, 5};
-    ASSERT_EQ(problema_cautbin::binary_find(a, 0, a.size(), 5), 4);
-    ASSERT_EQ(problema_cautbin::binary_find(a, 0, a.size(), 7), -1);
+    ASSERT_EQ(problema_cautbin::binary_find(a, 0, a.size() - 1, 3, -1), 3);
+    ASSERT_EQ(problema_cautbin::binary_find(a, 0, a.size() - 1, 7, -1), -1);
 }

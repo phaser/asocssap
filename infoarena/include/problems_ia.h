@@ -14,5 +14,5 @@ int32_t gcd(int32_t a, int32_t b);
 
 namespace problema_cautbin
 {
-int binary_find(std::vector<int>& mv, int begin, int end, int value);
+int binary_find(std::vector<int>& mv, int begin, int end, int value, int result);
 }
