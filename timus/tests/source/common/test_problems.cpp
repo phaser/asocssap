@@ -17,4 +17,9 @@ TEST_F(TimusProblemsTestClass, TestProblem_1796)  // NOLINT
     solve_1796(input2, 10, output);
     ASSERT_EQ(output.size(), 1);
     ASSERT_EQ(output[0], 11);
+    output.clear();
+    std::vector<int> input3 = {0, 3, 0, 0, 0, 0};
+    solve_1796(input3, 33, output);
+    ASSERT_EQ(output.size(), 1);
+    ASSERT_EQ(output[0], 4);
 }

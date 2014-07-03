@@ -11,15 +11,22 @@ void solve_1796(std::vector<int>& input, int ticketprice, std::vector<int>& outp
         sum += input[i] * bills[i];
     }
     int max_num_tickets = sum / ticketprice;
+    int offset = sum - max_num_tickets * ticketprice;
     int min_num_tickets = max_num_tickets;
     bool haveMin = true;
     while (haveMin)
     {
+        if (min_num_tickets <= 0)
+        {
+            min_num_tickets = max_num_tickets;
+            haveMin = false;
+            break;
+        }
         min_num_tickets--;
         int diff = (max_num_tickets - min_num_tickets) * ticketprice;
         for (int i = 0; i < 6; i++)
         {
-            if (input[i] > 0 && (diff >= bills[i]))
+            if (input[i] > 0 && (diff + offset >= bills[i]))
             {
                 min_num_tickets++;
                 haveMin = false;
