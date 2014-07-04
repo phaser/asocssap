@@ -3,6 +3,12 @@
 
 int bills[6] = {10, 50, 100, 500, 1000, 5000};
 
+/* The solution is complicated unnecessarily but I was lazy to do a more compact version.
+ * The idea is to compute the max number of tickets that we can buy with our sum and then
+ * substract a ticket and add it with the offset (the surplus that doesn't cover a ticket) and
+ * see if it exceeds the amount of any banknote. If this is the case then min++ is our minimum and
+ * we can print the solution.
+ */
 void solve_1796(std::vector<int>& input, int ticketprice, std::vector<int>& output)
 {
     int sum = 0;
