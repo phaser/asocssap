@@ -23,3 +23,10 @@ TEST_F(TimusProblemsTestClass, TestProblem_1796)  // NOLINT
     ASSERT_EQ(output.size(), 1);
     ASSERT_EQ(output[0], 4);
 }
+
+TEST_F(TimusProblemsTestClass, TestProblem_1005)  // NOLINT
+{
+    std::vector<int> input = {5, 8, 13, 27, 14};
+    int diff = solve_1005(input);
+    ASSERT_EQ(diff, 3);
+}
