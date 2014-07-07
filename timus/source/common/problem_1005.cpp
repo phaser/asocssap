@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <vector>
 #include <cmath>
+#include <cstdio>
 
 struct comparator
 {
@@ -57,6 +58,16 @@ int solve_1005(std::vector<int>& input)
 #ifndef TESTS
 int main()
 {
+    int n, a;
+    scanf("%d", &n);
+    std::vector<int> input;
+    input.reserve(n);
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &a);
+        input.push_back(a);
+    }
+    printf("%d", solve_1005(input));
     return 0;
 }
 #endif
