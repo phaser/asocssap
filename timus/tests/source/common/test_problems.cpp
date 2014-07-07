@@ -29,4 +29,10 @@ TEST_F(TimusProblemsTestClass, TestProblem_1005)  // NOLINT
     std::vector<int> input = {5, 8, 13, 27, 14};
     int diff = solve_1005(input);
     ASSERT_EQ(diff, 3);
+    std::vector<int> input2 = {1, 2, 2, 2, 2, 2, 10};
+    diff = solve_1005(input2);
+    ASSERT_EQ(diff, 1);
+    std::vector<int> input3 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    diff = solve_1005(input3);
+    ASSERT_EQ(diff, 0);
 }
