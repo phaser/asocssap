@@ -32,7 +32,7 @@ TEST_F(TimusProblemsTestClass, TestProblem_1005)  // NOLINT
     std::vector<int> input2 = {1, 2, 2, 2, 2, 2, 10};
     diff = solve_1005(input2);
     ASSERT_EQ(diff, 1);
-    std::vector<int> input3 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    std::vector<int> input3 = {1, 2, 3, 4, 5, 6, 7, 8};
     diff = solve_1005(input3);
     ASSERT_EQ(diff, 0);
 }
