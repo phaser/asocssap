@@ -15,6 +15,7 @@ endif (WIN32)
 add_module_dependency(${PROJ_NAME} "euler" "")
 add_module_dependency(${PROJ_NAME} "infoarena" "")
 add_module_dependency(${PROJ_NAME} "timus" "")
+add_module_dependency(${PROJ_NAME} "codeforces" "")
 
 build_module(${PROJ_NAME} ${BUILD_TYPE})
 
