@@ -1,4 +1,4 @@
 #pragma once
 #include <vector>
 
-int solve_304a(int n);
+const char* solve_ride(const char* comet, const char* group);

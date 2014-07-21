@@ -16,6 +16,7 @@ add_module_dependency(${PROJ_NAME} "euler" "")
 add_module_dependency(${PROJ_NAME} "infoarena" "")
 add_module_dependency(${PROJ_NAME} "timus" "")
 add_module_dependency(${PROJ_NAME} "codeforces" "")
+add_module_dependency(${PROJ_NAME} "usaco" "")
 
 build_module(${PROJ_NAME} ${BUILD_TYPE})
 
