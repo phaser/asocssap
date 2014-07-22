@@ -27,3 +27,8 @@ TEST_F(UsacoProblemsTestClass, TestProblem_friday)  // NOLINT
     ASSERT_EQ(days[6], 33);
     delete [] days;
 }
+
+TEST_F(UsacoProblemsTestClass, TestProblem_beads)  // NOLINT
+{
+    ASSERT_EQ(solve_beads(29, "wwwbbrwrbrbrrbrbrwrwwrbwrwrrb"), 11);
+}
