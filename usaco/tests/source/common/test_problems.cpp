@@ -31,4 +31,6 @@ TEST_F(UsacoProblemsTestClass, TestProblem_friday)  // NOLINT
 TEST_F(UsacoProblemsTestClass, TestProblem_beads)  // NOLINT
 {
     ASSERT_EQ(solve_beads(29, "wwwbbrwrbrbrrbrbrwrwwrbwrwrrb"), 11);
+    ASSERT_EQ(solve_beads(3, "rrr"), 3);
+    ASSERT_EQ(solve_beads(8, "rrwwwwbb"), 8);
 }
