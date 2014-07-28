@@ -52,3 +52,16 @@ TEST_F(UsacoProblemsTestClass, TestProblem_milk2)  // NOLINT
     ASSERT_EQ(mt, 19);
     ASSERT_EQ(it, 0);
 }
+
+TEST_F(UsacoProblemsTestClass, TestProblem_transform)  // NOLINT
+{
+    char* m1 = new char[9]{'@','-', '@'
+                          ,'-','-','-'
+                          ,'@','@','-'};
+    char* m2 = new char[9]{'@','-', '@'
+                          ,'@','-','-'
+                          ,'-','-','@'};
+
+    int result = solve_transform(m1, m2);
+    ASSERT_EQ(result, 1);
+}
