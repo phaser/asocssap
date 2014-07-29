@@ -100,4 +100,20 @@ TEST_F(UsacoProblemsTestClass, TestProblem_transform)  // NOLINT
     
     result = solve_transform(3, m1, m2);
     ASSERT_EQ(result, 4);
+    
+    delete [] m1;
+    delete [] m2;
+    m1 = new char[25]{'-','@','@','@','-'
+                     ,'-','@','@','-','-'
+                     ,'-','@','-','-','-'
+                     ,'-','-','-','-','-'
+                     ,'-','-','-','-','-'};
+    m2 = new char[25]{'-','-','-','-','-'
+                     ,'-','-','-','-','@'
+                     ,'-','-','-','@','@'
+                     ,'-','-','@','@','@'
+                     ,'-','-','-','-','-'};
+    
+    result = solve_transform(5, m1, m2);
+    ASSERT_EQ(result, 5);
 }
