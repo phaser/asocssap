@@ -55,13 +55,49 @@ TEST_F(UsacoProblemsTestClass, TestProblem_milk2)  // NOLINT
 
 TEST_F(UsacoProblemsTestClass, TestProblem_transform)  // NOLINT
 {
-    char* m1 = new char[9]{'@','-', '@'
+    char* m1 = new char[9]{'@','-','@'
                           ,'-','-','-'
                           ,'@','@','-'};
-    char* m2 = new char[9]{'@','-', '@'
+    char* m2 = new char[9]{'@','-','@'
                           ,'@','-','-'
                           ,'-','-','@'};
 
-    int result = solve_transform(m1, m2);
+    int result = solve_transform(3, m1, m2);
     ASSERT_EQ(result, 1);
+
+    delete [] m1;
+    delete [] m2;
+    m1 = new char[9]{'@','-','@'
+                     ,'-','-','-'
+                    ,'@','@','-'};
+    m2 = new char[9]{'-','@','@'
+                    ,'-','-','-'
+                    ,'@','-','@'};
+    
+    result = solve_transform(3, m1, m2);
+    ASSERT_EQ(result, 2);
+    
+    delete [] m1;
+    delete [] m2;
+    m1 = new char[9]{'@','-','@'
+                    ,'-','-','-'
+                    ,'@','@','-'};
+    m2 = new char[9]{'@','-','-'
+                    ,'-','-','@'
+                    ,'@','-','@'};
+    
+    result = solve_transform(3, m1, m2);
+    ASSERT_EQ(result, 3);
+    
+    delete [] m1;
+    delete [] m2;
+    m1 = new char[9]{'@','-','@'
+                    ,'-','-','-'
+                    ,'@','@','-'};
+    m2 = new char[9]{'@','-','@'
+                    ,'-','-','-'
+                    ,'-','@','@'};
+    
+    result = solve_transform(3, m1, m2);
+    ASSERT_EQ(result, 4);
 }
