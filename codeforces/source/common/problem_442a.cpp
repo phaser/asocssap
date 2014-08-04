@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <stdint.h>
 #include <vector>
+#include <algorithm>
 
 #define RM 0x0001
 #define GM 0x0002
@@ -37,26 +38,80 @@ uint16_t getMask(char c)
     return 0;
 }
 
+uint16_t countBits(uint16_t v)
+{
+    uint16_t c;
+    for (c = 0; v; c++) v &= v - 1;
+    return c;
+}
+
 uint16_t solve_442a(std::vector<uint16_t>& cards)
 {
     uint16_t accepted_symbols = 0;
-    for (auto it = cards.begin(); it != cards.end(); it++)
+    std::vector<uint16_t> unique_cards;
+    for (std::vector<uint16_t>::iterator it = cards.begin(); it != cards.end(); it++)
     {
         accepted_symbols = setMask(accepted_symbols, *it);
+        std::vector<uint16_t>::iterator val = std::find(unique_cards.begin(), unique_cards.end(), *it);
+        if (val == unique_cards.end())
+        {
+            unique_cards.push_back(*it);
+        }
     }
     uint16_t solution = 0;
-    while (solution < 1024)
+    uint16_t min = 11;
+    if (unique_cards.size() == 1)
+    {
+        return 0;
+    }
+
+    while (++solution < 1024)
     {
         // check if valid
         if ((solution | accepted_symbols) != accepted_symbols)
         {
-            solution++;
             continue;
         }
-        printf("solution: %d\n", solution);
-        solution++;
+        std::vector<uint16_t> icards = cards;
+        std::vector<uint16_t> lucards = unique_cards;
+        for (std::vector<uint16_t>::iterator it = icards.begin(); it != icards.end(); it++)
+        {
+            *it = *it & solution;
+        }
+        size_t sz = icards.size();
+        for (size_t i = 0; i < sz; i++)
+        {
+            if (icards[i] == cards[i])
+            {
+                std::vector<uint16_t>::iterator it = find(lucards.begin(), lucards.end(), icards[i]);
+                if (it != lucards.end()) lucards.erase(it);
+                icards[i] = 0;
+            }
+        }
+        for (size_t i = 0; i < sz; i++)
+        {
+            if (icards[i] != 0)
+            {
+                uint16_t bkp = icards[i];
+                icards[i] = 0;
+                std::vector<uint16_t>::iterator it = find(icards.begin(), icards.end(), bkp);
+                if (it == icards.end())
+                {
+                    std::vector<uint16_t>::iterator mit = find(lucards.begin(), lucards.end(), cards[i]);
+                    if (mit != lucards.end()) lucards.erase(mit);
+                } else
+                {
+                    icards[i] = bkp;
+                }
+            }
+        }
+        if (lucards.size() <= 1)
+        {
+            uint16_t bits = countBits(solution);
+            if (bits < min) min = bits;
+        }
     }
-    return 2;
+    return min;
 }
 
 #ifndef TESTS
@@ -68,12 +123,13 @@ int main()
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
     {
-        fscanf("%s", &group);
+        scanf("%s", &group);
         uint16_t card = 0;
         card = setMask(card, getMask(group[0]));
         card = setMask(card, getMask(group[1]));
         cards.push_back(card);
     }
+    printf("%d\n", solve_442a(cards));
     return 0;
 }
 #endif
