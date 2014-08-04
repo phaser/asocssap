@@ -88,20 +88,26 @@ uint16_t solve_442a(std::vector<uint16_t>& cards)
                 icards[i] = 0;
             }
         }
-        for (size_t i = 0; i < sz; i++)
+        bool canGo = true;
+        while (canGo)
         {
-            if (icards[i] != 0)
+            canGo = false;
+            for (size_t i = 0; i < sz; i++)
             {
-                uint16_t bkp = icards[i];
-                icards[i] = 0;
-                std::vector<uint16_t>::iterator it = find(icards.begin(), icards.end(), bkp);
-                if (it == icards.end())
+                if (icards[i] != 0)
                 {
-                    std::vector<uint16_t>::iterator mit = find(lucards.begin(), lucards.end(), cards[i]);
-                    if (mit != lucards.end()) lucards.erase(mit);
-                } else
-                {
-                    icards[i] = bkp;
+                    uint16_t bkp = icards[i];
+                    icards[i] = 0;
+                    std::vector<uint16_t>::iterator it = find(icards.begin(), icards.end(), bkp);
+                    if (it == icards.end())
+                    {
+                        std::vector<uint16_t>::iterator mit = find(lucards.begin(), lucards.end(), cards[i]);
+                        if (mit != lucards.end()) lucards.erase(mit);
+                        canGo = true;
+                    } else
+                    {
+                        icards[i] = bkp;
+                    }
                 }
             }
         }
