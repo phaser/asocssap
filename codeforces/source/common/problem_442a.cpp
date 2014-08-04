@@ -78,6 +78,8 @@ uint16_t solve_442a(std::vector<uint16_t>& cards)
         {
             *it = *it & solution;
         }
+        
+        // Remove the cards matched directly
         size_t sz = icards.size();
         for (size_t i = 0; i < sz; i++)
         {
@@ -88,26 +90,23 @@ uint16_t solve_442a(std::vector<uint16_t>& cards)
                 icards[i] = 0;
             }
         }
-        bool canGo = true;
-        while (canGo)
+        
+        // Remove the cards that were matched partially but there is only one type left in the
+        // list that contain the same partial part matched
+        for (size_t i = 0; i < sz; i++)
         {
-            canGo = false;
-            for (size_t i = 0; i < sz; i++)
+            if (icards[i] != 0)
             {
-                if (icards[i] != 0)
+                uint16_t count = 0;
+                for (std::vector<uint16_t>::iterator it = lucards.begin(); it != lucards.end(); it++)
                 {
-                    uint16_t bkp = icards[i];
+                    if ((*it & icards[i]) == icards[i]) count++;
+                }
+                if (count == 1)
+                {
+                    std::vector<uint16_t>::iterator it = find(lucards.begin(), lucards.end(), cards[i]);
+                    if (it != lucards.end()) lucards.erase(it);
                     icards[i] = 0;
-                    std::vector<uint16_t>::iterator it = find(icards.begin(), icards.end(), bkp);
-                    if (it == icards.end())
-                    {
-                        std::vector<uint16_t>::iterator mit = find(lucards.begin(), lucards.end(), cards[i]);
-                        if (mit != lucards.end()) lucards.erase(mit);
-                        canGo = true;
-                    } else
-                    {
-                        icards[i] = bkp;
-                    }
                 }
             }
         }
