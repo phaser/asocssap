@@ -10,32 +10,32 @@ struct determine_max
     void operator() (char c) { if (c > max) max = c; }
 };
 
-int count_digits_base(int num, int base)
-{
-    int count = 0;
-    while (num > 0)
-    {
-        num /= base;
-        count++;
-    }
-    return count;
-}
-
 int solve_49b(const std::string a, const std::string b)
 {
-    if (a.compare("11") == 0 && b.compare("11") == 0) return 3;
     char max = '0';
     struct determine_max dmax(max);
     for_each(a.begin(), a.end(), dmax);
     for_each(b.begin(), b.end(), dmax);
     int an = atoi(a.c_str());
     int bn = atoi(b.c_str());
-    int sum = an + bn;
     int base = max - '0' + 1;
-    return count_digits_base(sum, base);
+    int digits = 0;
+    int carry = 0;
+    while (an > 0 || bn > 0)
+    {
+        int da = an % 10;
+        int db = bn % 10;
+        if (da + db + carry >= base)
+        {
+            carry = (da + db +carry) / base;
+        } else carry = 0;
+        an /= 10;
+        bn /= 10;
+        digits++;
+    }
+    if (carry) digits++;
+    return digits;
 }
-
-
 
 #ifndef TESTS
 int main()

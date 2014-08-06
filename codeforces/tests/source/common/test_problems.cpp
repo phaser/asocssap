@@ -66,4 +66,6 @@ TEST_F(CodeForcesProblemsTestClass, TestProblem_49b)  // NOLINT
     ASSERT_EQ(result, 2);
     result = solve_49b("11", "11");
     ASSERT_EQ(result, 3);
+    result = solve_49b("12", "34");
+    ASSERT_EQ(result, 3);
 }
