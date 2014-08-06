@@ -57,3 +57,13 @@ TEST_F(CodeForcesProblemsTestClass, TestProblem_442a)  // NOLINT
     result = solve_442a(vec4);
     ASSERT_EQ(result, 2);
 }
+
+TEST_F(CodeForcesProblemsTestClass, TestProblem_49b)  // NOLINT
+{
+    int result = solve_49b("78", "87");
+    ASSERT_EQ(result, 3);
+    result = solve_49b("1", "1");
+    ASSERT_EQ(result, 2);
+    result = solve_49b("11", "11");
+    ASSERT_EQ(result, 3);
+}
