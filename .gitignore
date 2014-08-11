@@ -13,3 +13,5 @@
 *.a
 
 projects
+
+.DS_store
