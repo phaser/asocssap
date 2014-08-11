@@ -13,7 +13,11 @@
 #define FILENAME "namenum"
 #define DICT "dict.txt"
 
-char letters[27] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y'};
+char letters[27] {'A', 'B', 'C', 'D', 'E'
+                , 'F', 'G', 'H', 'I', 'J'
+                , 'K', 'L', 'M', 'N', 'O'
+                , 'P', 'R', 'S', 'T', 'U'
+                , 'V', 'W', 'X', 'Y'};
 void filter_by_size(std::vector<std::string>& dict, std::vector<char>& dictu, size_t sz)
 {
     size_t ms = dict.size();
@@ -45,6 +49,7 @@ void filter_dict(std::vector<std::string>& dict, std::vector<char>& dictu, char 
     }
 }
 
+#ifndef TESTS
 int main()
 {
     // Load dictionary
@@ -89,3 +94,4 @@ int main()
     fclose(fout);
     return 0;
 }
+#endif
