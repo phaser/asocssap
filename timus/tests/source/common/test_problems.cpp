@@ -36,3 +36,10 @@ TEST_F(TimusProblemsTestClass, TestProblem_1005)  // NOLINT
     diff = solve_1005(input3);
     ASSERT_EQ(diff, 0);
 }
+
+TEST_F(TimusProblemsTestClass, TestProblem_1875)  // NOLINT
+{
+    std::vector<uint16_t> input = {1, 5, 2, 8, 3, 9, 4, 8, 5, 5};
+    int result = solve_1875(input);
+    ASSERT_EQ(result, 1);
+}
