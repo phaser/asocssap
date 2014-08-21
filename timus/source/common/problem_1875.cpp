@@ -1,87 +1,157 @@
 #include <cstdio>
 #include <vector>
 #include <set>
+#include <stdint.h>
+#include <math.h>
+#include <algorithm>
+#include <string.h>
 
-int computeScore(std::set<int>& ke, std::vector<int>& elems)
+struct Point
 {
-    int result = 0;
-    for (auto it = elems.begin(); it != elems.end(); it++)
+    int64_t x, y;
+};
+
+struct comparator
+{
+    bool operator() (const struct Point& p1, const struct Point& p2)
     {
-        if (ke.find(*it) != ke.end()) result++;
+        return (p1.x < p2.x);
     }
+};
+int solve_1875_a(std::vector<struct Point>& p)
+{
+    struct comparator comp;
+    std::sort(p.begin(), p.end(), comp);
+    int szz = p.size();
+    int result = 0;
+    bool erase = false;
+    int i = 0;
+    while (i < szz)
+    {
+        int j = i + 1;
+        erase = false;
+        while (j < szz)
+        {
+            erase = false;
+            int64_t k = p[i].x * p[j].x * (p[j].x - p[i].x);
+            int64_t a = p[j].y * p[i].x - p[i].y * p[j].x;
+            int64_t b = p[i].y * p[j].x * (p[j].x - p[i].x) - a * p[i].x;
+            if (k == 0)
+            {
+                j++;
+                continue;
+            }
+            if (p[i].x == p[j].x)
+            {
+                j++;
+                continue;
+            }
+            if (b == 0)
+            {
+                j++;
+                continue;
+            }
+            if (!((a >= 0 && k < 0) || (k >= 0 && a < 0)))
+            {
+                j++;
+                continue;
+            }
+            int sz = szz;
+            for (int d = 0; d < sz; d++)
+            {
+                if (p[d].y * k  == a * p[d].x * p[d].x + b * p[d].x)
+                {
+                    p.erase(p.begin() + d);
+                    d--; sz--;
+                    erase = true;
+                }
+            }
+            result++;
+            if (!erase) j++;
+            szz = p.size();
+            if (szz <= 1)
+                break;
+        }
+        if (!erase) i++;
+        if (szz <= 1)
+            break;
+    }
+    if (szz > 0) result += szz;
     return result;
 }
 
-int solve_1875(std::vector<int>& p)
+int getMax(const int p[25])
 {
-    std::set<int> afp;
-    std::vector<std::vector<int>> lists;
-    std::vector<int> list;
-    int m = 2;
+    int max = 0;
+    for (size_t i = 0; i < 25; i++)
+    {
+        if (p[i] > p[max]) max = i;
+    }
+    return max;
+}
+
+int solve_1875(std::vector<struct Point>& p)
+{
+    int curves[25];
+    int result;
+    memset(curves, 0, 25 * sizeof(int));
     for (int i = 0; i < 5; i++)
+    for (int j = i+1; j < 5; j++)
     {
-        for (int j = i+1; j < 5; j++)
+        int64_t k = p[i].x * p[j].x * (p[j].x - p[i].x);
+        int64_t a = p[j].y * p[i].x - p[i].y * p[j].x;
+        int64_t b = p[i].y * p[j].x * (p[j].x - p[i].x) - a * p[i].x;
+        if (k == 0)
         {
-            double a = (double)(p[2 * j + 1] * p[2 * i] - p[2 * j] * p[2 * i + 1]) / (double)(p[2 * j] * p[2 * i] * (p[2 * j] - p[2 * i]));
-            double b = (double)(p[2 * i + 1] - a * p[2 * i] * p[2 * i]) / (double)p[2 * i];
-            list.clear();
-            list.push_back(i);
-            list.push_back(j);
-            for (int k = 0; k < 5; k++)
+            continue;
+        }
+        if (p[i].x == p[j].x)
+        {
+            continue;
+        }
+        if (b == 0)
+        {
+            continue;
+        }
+        if (!((a >= 0 && k < 0) || (k >= 0 && a < 0)))
+        {
+            continue;
+        }
+        for (int d = 0; d < 5; d++)
+        {
+            if (p[d].y * k  == a * p[d].x * p[d].x + b * p[d].x)
             {
-                if (k != i && k != j)
-                {
-                    if (a * p[2 * k] * p[2 * k] + b * p[2 * k] - p[2 * k + 1] < 0.000001)
-                    {
-                        list.push_back(k);
-                    }
-                }
+                curves[i * 5 + j]++;
             }
-            lists.push_back(list);
         }
     }
-    int nocurves = 0;
-    while (afp.size() < 5)
+    int max = getMax(curves);
+    if (curves[max] == 5)
+        return 1;
+    else if (curves[max] == 4)
+        return 2;
+    else if (curves[max] == 2)
+        return 3;
+    else if (curves[max] == 0)
+        return 5;
+    else if (curves[max] == 3)
     {
-        size_t sz = lists.size();
-        int max = 0;
-        int sc_max = computeScore(afp, lists[max]);
-        int sc_aux;
-        for (size_t i = 1; i < sz; i++)
-        {
-            if ((sc_aux = computeScore(afp, lists[i])) > sc_max)
-            {
-                max = i;
-                sc_max = sc_aux;
-            }
-            if (sc_aux == 5)
-            {
-                return 1;
-            }
-        }
-        nocurves++;
-        for (auto it = lists[max].begin(); it != lists[max].end(); it++)
-        {
-            afp.insert(*it);
-        }
-        if (afp.size() == 4)
-        {
-            return nocurves + 1;
-        }
+        return solve_1875_a(p);
     }
-    return nocurves;
+    return 3;
 }
 
 #ifndef TESTS
 int main()
 {
     int a, b;
-    std::vector<int> elems;
+    std::vector<struct Point> elems;
     for (int i = 0; i < 5; i++)
     {
         scanf("%d %d", &a, &b);
-        elems.push_back(a);
-        elems.push_back(b);
+        struct Point p;
+        p.x = a; p.y = b;
+        elems.push_back(p);
     }
     printf("%d\n", solve_1875(elems));
     return 0;

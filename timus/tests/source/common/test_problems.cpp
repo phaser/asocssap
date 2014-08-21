@@ -1,6 +1,10 @@
 #include <gtest/gtest.h>
 #include <timus_include.h>
 
+struct Point
+{
+    int64_t x, y;
+};
 class TimusProblemsTestClass : public testing::Test
 {
 };
@@ -39,7 +43,34 @@ TEST_F(TimusProblemsTestClass, TestProblem_1005)  // NOLINT
 
 TEST_F(TimusProblemsTestClass, TestProblem_1875)  // NOLINT
 {
-    std::vector<uint16_t> input = {1, 5, 2, 8, 3, 9, 4, 8, 5, 5};
+    std::vector<struct Point> input {{1, 5}, {2, 8}, {3, 9}, {4, 8}, {5, 5}};
     int result = solve_1875(input);
     ASSERT_EQ(result, 1);
+    std::vector<struct Point> input2 {{1, 5}, {2, 8}, {3, 10}, {4, 9}, {5, 5}};
+    result = solve_1875(input2);
+    ASSERT_EQ(result, 2);
+    std::vector<struct Point> input3 {{1, 999}, {2, 999}, {3, 0}, {4, 1}, {5, 2}};
+    result = solve_1875(input3);
+    ASSERT_EQ(result, 3);
+    std::vector<struct Point> input4 {{1, 10000}, {2, 10000}, {3, 10000}, {4, 10000}, {5, 10000}};
+    result = solve_1875(input4);
+    ASSERT_EQ(result, 3);
+    std::vector<struct Point> input5 {{1, 1}, {2, 1}, {3, 1}, {4, 1}, {5, 1}};
+    result = solve_1875(input5);
+    ASSERT_EQ(result, 3);
+    std::vector<struct Point> input6 {{1, 1}, {1, 2}, {1, 3}, {1, 4}, {1, 5}};
+    result = solve_1875(input6);
+    ASSERT_EQ(result, 5);
+    std::vector<struct Point> input7 {{1, 5}, {2, 8}, {3, 10}, {4, 8}, {5, 5}};
+    result = solve_1875(input7);
+    ASSERT_EQ(result, 2);
+    std::vector<struct Point> input8 {{1, 1}, {2, 4}, {3, 9}, {4, 8}, {5, 5}};
+    result = solve_1875(input8);
+    ASSERT_EQ(result, 3);
+    std::vector<struct Point> input9 {{1, 1}, {2, 4}, {3, 9}, {4, 16}, {5, 25}};
+    result = solve_1875(input9);
+    ASSERT_EQ(result, 5);
+    std::vector<struct Point> input10 {{4, 0}, {3, 9}, {4, 8}, {5, 5}, {1, 1}};
+    result = solve_1875(input10);
+    ASSERT_EQ(result, 2);
 }
