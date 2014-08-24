@@ -9,6 +9,7 @@
 #include <algorithm>
 #define FILENAME "milk"
 
+#ifndef TESTS
 int main()
 {
     FILE *fin = fopen(FILENAME ".in", "r");
@@ -39,3 +40,4 @@ int main()
     fclose(fout);
     return 0;
 }
+#endif

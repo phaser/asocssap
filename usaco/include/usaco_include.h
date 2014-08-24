@@ -7,3 +7,4 @@ int solve_beads(int sz, const char* str);
 struct iterval;
 void solve_milk2(std::vector<struct interval> intervals, int* maxm, int* maxi);
 int solve_transform(size_t sz, char* m1, char* m2);
+int solve_barn1(int n, std::vector<int>& c);

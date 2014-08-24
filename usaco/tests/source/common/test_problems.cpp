@@ -117,3 +117,13 @@ TEST_F(UsacoProblemsTestClass, TestProblem_transform)  // NOLINT
     result = solve_transform(5, m1, m2);
     ASSERT_EQ(result, 5);
 }
+
+TEST_F(UsacoProblemsTestClass, TestProblem_barn1)  // NOLINT
+{
+    std::vector<int> input = {3, 4, 6, 8, 14, 15, 16, 17, 21, 25, 26, 27, 30, 31, 40, 41, 42, 43};
+    int result = solve_barn1(4, input);
+    ASSERT_EQ(result, 25);
+    std::vector<int> input2 = {18, 69, 195, 38, 73, 28, 6, 172, 53, 99};
+    result = solve_barn1(50, input2);
+    ASSERT_EQ(result, 10);
+}
