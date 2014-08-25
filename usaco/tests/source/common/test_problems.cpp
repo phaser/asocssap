@@ -127,3 +127,13 @@ TEST_F(UsacoProblemsTestClass, TestProblem_barn1)  // NOLINT
     result = solve_barn1(50, input2);
     ASSERT_EQ(result, 10);
 }
+
+TEST_F(UsacoProblemsTestClass, TestProblem_crypt1)  // NOLINT
+{
+    std::set<int> vs = {2, 3, 4, 6, 8};
+    int result = solve_cript1(vs);
+    ASSERT_EQ(result, 1);
+    std::set<int> vs1 = {4, 1, 2, 5, 6, 7, 3};
+    result = solve_cript1(vs1);
+    ASSERT_EQ(result, 384);
+}
