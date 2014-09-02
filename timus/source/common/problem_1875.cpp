@@ -18,7 +18,7 @@ struct comparator
         return (p1.x < p2.x);
     }
 };
-int solve_1875_a(std::vector<struct Point>& p)
+double solve_1875_a(std::vector<struct Point>& p)
 {
     struct comparator comp;
     std::sort(p.begin(), p.end(), comp);

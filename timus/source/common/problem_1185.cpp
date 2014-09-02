@@ -70,7 +70,7 @@ struct Point nextToTop(std::stack<struct Point> &S)
     return res;
 }
 
-int solve_1185(std::vector<struct Point>& p, int r)
+double solve_1185(std::vector<struct Point>& p, int r)
 {
     int idx = find_first_point(p);
     struct Point fp = p[idx];
@@ -101,8 +101,8 @@ int solve_1185(std::vector<struct Point>& p, int r)
     }
     sum += sqrt(dist(fp, sfp));
     sum += 2 * 3.1415926535 * r;
-    int isum = (int)(sum + 0.5);
-    return isum;
+
+    return floor(sum);
 }
 
 #ifndef TESTS
@@ -117,7 +117,8 @@ int main()
         scanf("%d %d", &p.x, &p.y);
         input.push_back(p);
     }
-    printf("%d\n", solve_1185(input, r));
+    int64_t result = solve_1185(input, r);
+    printf("%lld\n", result);
     return 0;
 }
 #endif
