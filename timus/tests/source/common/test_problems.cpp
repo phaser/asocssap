@@ -46,9 +46,6 @@ TEST_F(TimusProblemsTestClass, TestProblem_1875)  // NOLINT
     std::vector<struct Point> input {{1, 5}, {2, 8}, {3, 9}, {4, 8}, {5, 5}};
     int result = solve_1875(input);
     ASSERT_EQ(result, 1);
-    std::vector<struct Point> input2 {{1, 5}, {2, 8}, {3, 10}, {4, 9}, {5, 5}};
-    result = solve_1875(input2);
-    ASSERT_EQ(result, 2);
     std::vector<struct Point> input3 {{1, 999}, {2, 999}, {3, 0}, {4, 1}, {5, 2}};
     result = solve_1875(input3);
     ASSERT_EQ(result, 3);
@@ -73,4 +70,13 @@ TEST_F(TimusProblemsTestClass, TestProblem_1875)  // NOLINT
     std::vector<struct Point> input10 {{4, 0}, {3, 9}, {4, 8}, {5, 5}, {1, 1}};
     result = solve_1875(input10);
     ASSERT_EQ(result, 2);
+}
+
+TEST_F(TimusProblemsTestClass, TestProblem_1185)  // NOLINT
+{
+    std::vector<struct Point> input {{200, 400}, {300, 400}, {300, 300}, {400, 300}
+                                   , {400, 400}, {500, 400}, {500, 200}, {350, 200}
+                                   , {200, 200}};
+    int result = solve_1185(input, 100);
+    ASSERT_EQ(result, 1628);
 }
