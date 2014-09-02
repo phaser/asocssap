@@ -90,12 +90,16 @@ int solve_1185(std::vector<struct Point>& p, int r)
         s.push(p[i]);
     }
     double sum = 0;
+    struct Point sfp = s.top();
+    fp = s.top();
+    s.pop();
     while (!s.empty())
     {
         sum += sqrt(dist(fp, s.top()));
         fp = s.top();
         s.pop();
     }
+    sum += sqrt(dist(fp, sfp));
     sum += 2 * 3.1415926535 * r;
     int isum = (int)(sum + 0.5);
     return isum;
