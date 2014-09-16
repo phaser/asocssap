@@ -7,6 +7,7 @@ LANG: C++11
 #include <vector>
 #include <algorithm>
 #include <assert.h>
+#include <set>
 
 #define FILENAME "ariprog"
 
@@ -17,13 +18,41 @@ int main()
     FILE *fout = fopen(FILENAME ".out", "w");
     int n, m;
     fscanf(fin, "%d%d", &n, &m);
-    for (int p = 0; p < m; p++)
-    for (int q = p + 1; q < m; q++)
+    std::set<int> bi_squares;
+    for (int p = 0; p <= m; p++)
+    for (int q = 0; q <= m; q++)
     {
-        for (int r = 1; r < m; r++)
+        bi_squares.insert(p*p + q*q);
+    }
+    int mm = m*m;
+    bool hassol = false;
+    for (int r = 1; r <= mm; r++)
+    {
+        for (auto i : bi_squares)
         {
-
+            int count = 1;
+            int cn = i;
+            bool found = true;
+            while (count < n)
+            {
+                if (bi_squares.find(cn + r) == bi_squares.end())
+                {
+                    found = false;
+                    break;
+                }
+                count++;
+                cn = cn + r;
+            }
+            if (found)
+            {
+                fprintf(fout, "%d %d\n", i, r);
+                hassol = true;
+            }
         }
+    }
+    if (!hassol)
+    {
+        fprintf(fout, "NONE\n");
     }
     fclose(fin);
     fclose(fout);
