@@ -2,67 +2,56 @@
 #include <vector>
 #include <cmath>
 #include <cstdio>
+#include <stdint.h>
 
-struct comparator
+class MyBitSet
 {
-    bool operator() (int i, int j)
+public:
+    MyBitSet() : n_(0)
     {
-        return (i > j);
+
     }
-} mycompare;
+
+    MyBitSet& operator++()
+    {
+        n_ += 1;
+        return *this;
+    }
+
+    uint64_t operator[] (size_t idx)
+    {
+        return n_ & (1 << idx);
+    }
+private:
+    uint64_t n_;
+};
+
+uint64_t computeMinDist(std::vector<int>& input, MyBitSet& bs)
+{
+    int64_t mindst = 0;
+    size_t sz = input.size();
+    for (size_t i = 0; i < sz; i++)
+    {
+        mindst += (bs[i] == 0 ? input[i] : -input[i]);
+    }
+    return (mindst < 0 ? -mindst : mindst);
+}
 
 int solve_1005(std::vector<int>& input)
 {
-    int diff = 0;
-    std::sort(input.begin(), input.end(), mycompare);
-    std::vector<int> q1;
-    std::vector<int> q2;
-    q1.reserve(input.size());
-    q2.reserve(input.size());
-    size_t sz = input.size();
-    int sum1 = 0;
-    int sum2 = 0;
-    for (size_t i = 0; i < sz; i += 2)
+    uint64_t mindist = 0xFFFFFFFFFFFFFFFF;
+    MyBitSet bs;
+    uint64_t sz = 1 << input.size();
+    for (int i = 0; i < sz; i++)
     {
-        q1.push_back(input[i]);
-        sum1 += input[i];
-        if (i + 1 < sz)
+        uint64_t localdst = computeMinDist(input, bs);
+        if (localdst < mindist)
         {
-            q2.push_back(input[i+1]);
-            sum2 += input[i+1];
+            mindist = localdst;
         }
+        ++bs;
     }
-    diff = static_cast<int>(std::abs(static_cast<float>(sum1 - sum2)));
-    sz = q1.size();
-    for (size_t i = 0; i < sz; i++)
-    {
-        int ns1 = sum1 - q1[i];
-        int ns2 = sum2 + q1[i];
-        int nd = static_cast<int>(std::abs(static_cast<float>(ns1 - ns2)));
-        if (nd < diff)
-        {
-            q2.push_back(q1[i]);
-            sum1 = ns1;
-            sum2 = ns2;
-            diff = nd;
-        }
-    }
-
-    sz = q2.size();
-    for (size_t i = 0; i < sz; i++)
-    {
-        int ns1 = sum1 + q2[i];
-        int ns2 = sum2 - q2[i];
-        int nd = static_cast<int>(std::abs(static_cast<float>(ns1 - ns2)));
-        if (nd < diff)
-        {
-            q1.push_back(q2[i]);
-            sum1 = ns1;
-            sum2 = ns2;
-            diff = nd;
-        }
-    }
-    return diff;
+    return mindist;
 }
 
 #ifndef TESTS
