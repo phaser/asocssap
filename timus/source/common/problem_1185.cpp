@@ -3,6 +3,7 @@
 #include <stack>
 #include <math.h>
 #include <algorithm>
+#include <cstdio>
 
 struct Point
 {
