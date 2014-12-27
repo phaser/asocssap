@@ -81,3 +81,18 @@ TEST_F(TimusProblemsTestClass, TestProblem_1185)  // NOLINT
     int result = solve_1185(input, 100);
     ASSERT_EQ(result, 1628);
 }
+
+TEST_F(TimusProblemsTestClass, TestProblem_1815)  // NOLINT
+{
+    Pt p1(0.f, 0.f);
+    Pt p2(p1);
+    p2.x = p2.y = 1.f;
+    ASSERT_EQ(0.f, p1.x);
+    ASSERT_EQ(1.f, p2.x);
+    ASSERT_TRUE(sqrt(2.f) - p1.dist(p2) < 0.000001f);
+    Pt pp1(0.f, 0.f);
+    Pt pp2(1.f, 0.f);
+    Pt pp3(0.f, 1.f);
+    double result = solve_1815(pp1, pp2, pp3, 1, 1, 1);
+    ASSERT_EQ(result, 1.9318516526);
+}

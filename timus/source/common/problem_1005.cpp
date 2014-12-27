@@ -9,7 +9,6 @@ class MyBitSet
 public:
     MyBitSet() : n_(0)
     {
-
     }
 
     MyBitSet& operator++()
