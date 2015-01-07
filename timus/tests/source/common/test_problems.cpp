@@ -94,5 +94,11 @@ TEST_F(TimusProblemsTestClass, TestProblem_1815)  // NOLINT
     Pt pp2(1.f, 0.f);
     Pt pp3(0.f, 1.f);
     double result = solve_1815(pp1, pp2, pp3, 1, 1, 1);
-    ASSERT_EQ(result, 1.9318516526);
+    ASSERT_TRUE(result - 1.9318516526 < 0.0000000001);
+}
+
+TEST_F(TimusProblemsTestClass, TestProblem_1009)  // NOLINT
+{
+    int result = solve_1009(2, 10);
+    ASSERT_EQ(result, 90);
 }

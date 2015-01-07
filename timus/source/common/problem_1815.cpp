@@ -99,7 +99,7 @@ double solve_1815(const Pt& p1, const Pt& p2, const Pt& p3, double w1, double w2
                     + w3 / t3;
         y = sum1 / sum2;
         result2 = computeDistances(y, p1, p2, p3, w1, w2, w3);
-    } while (result2 < result && result - result2 > 0.0000000001);
+    } while (result2 < result && result - result2 > 0.00000000001);
 
     return result;
 }
