@@ -19,7 +19,12 @@ void printBinary(uint16_t n)
 
 void sort(std::vector<uint16_t>& v, uint16_t b, uint16_t e, int msk)
 {
-    printf("sort: b: %d e: %d msk: %d\n", b, e, msk);
+    //printf("sort: b: %d e: %d msk: %d\n", b, e, msk);
+    //for (auto e : v)
+    //{
+    //    std::cout << e << " ";
+    //}
+    //std::cout << std::endl;
     if (msk > 15) return;
     if (b >= e) return;
     uint16_t lo = b;
@@ -27,46 +32,52 @@ void sort(std::vector<uint16_t>& v, uint16_t b, uint16_t e, int msk)
     bool changed = false;
     while (lo < hi)
     {
-        int exchange = 0;
-        while (lo < hi) {
+        for (; lo < hi; lo++)
+        {
             if ((v[lo] & masks[msk]) != 0) {
-                exchange++;
+                changed = true;
                 break;
             }
-            lo++;
         }
-        while (lo < hi)
+        if (lo >= hi)
+        {
+            (v[lo] & masks[msk]) != 0 ? lo-- : hi++;
+            break;
+        }
+        for (; hi > lo; hi--)
         {
             if ((v[hi] & masks[msk]) == 0) {
-                exchange++;
+                changed = true;
                 break;
             }
-            hi--;
         }
-        if (exchange == 2)
+        if (hi <= lo)
         {
-            printBinary(masks[msk]);
-            printBinary(v[lo]);
-            printBinary(v[hi]);
-            printf("lo: %d hi: %d\n", lo, hi);
+            (v[hi] & masks[msk]) == 0 ? hi++ : lo--;
+            break;
+        }
+        if (lo < hi)
+        {
+            //printBinary(masks[msk]);
+            //printBinary(v[lo]);
+            //printBinary(v[hi]);
+            //printf("lo: %d hi: %d\n", lo, hi);
             uint16_t aux = v[lo];
             v[lo] = v[hi];
             v[hi] = aux;
             changed = true;
         }
     }
-    while ((v[lo] & masks[msk]) != 0) lo--;
     if (changed)
     {
-        sort(v, b, lo, msk+1);
-        if (lo+1 < e)
-            sort(v, lo+1, e, msk+1);
+        sort(v, b, lo, msk + 1);
+        sort(v, hi, e, msk + 1);
     } else {
         sort(v, b, e, msk + 1);
     }
 }
 
-#ifdef TESTS
+#ifndef TESTS
 int main ()
 {
     #define NOINTS 11
@@ -85,6 +96,11 @@ int main ()
     for (auto e : vector1)
     {
         std::cout << e << " ";
+    }
+    std::cout << std::endl;
+    for (auto e : vector1)
+    {
+        printBinary(e);
     }
     std::cout << std::endl;
     std::sort(vector1.begin(), vector1.end());
