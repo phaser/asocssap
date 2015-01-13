@@ -225,6 +225,7 @@ bool Maze::hitsPlayer(Turret& t)
     return false;
 }
 
+#ifdef TESTS
 int main()
 {
     int t;
@@ -253,4 +254,5 @@ int main()
     }
     return 0;
 }
+#endif
 

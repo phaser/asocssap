@@ -14,7 +14,6 @@ void printBinary(uint16_t n)
             std::cout << "0";
     }
     std::cout << " :" << n;
-    std::cout << std::endl;
 }
 
 void sort(std::vector<uint16_t>& v, uint16_t b, uint16_t e, int msk)
@@ -32,65 +31,49 @@ void sort(std::vector<uint16_t>& v, uint16_t b, uint16_t e, int msk)
     bool changed = false;
     while (lo < hi)
     {
-        for (; lo < hi; lo++)
-        {
-            if ((v[lo] & masks[msk]) != 0) {
-                changed = true;
-                break;
-            }
-        }
-        if (lo >= hi)
-        {
-            (v[lo] & masks[msk]) != 0 ? lo-- : hi++;
-            break;
-        }
-        for (; hi > lo; hi--)
-        {
-            if ((v[hi] & masks[msk]) == 0) {
-                changed = true;
-                break;
-            }
-        }
-        if (hi <= lo)
-        {
-            (v[hi] & masks[msk]) == 0 ? hi++ : lo--;
-            break;
-        }
-        if (lo < hi)
-        {
-            //printBinary(masks[msk]);
-            //printBinary(v[lo]);
-            //printBinary(v[hi]);
+        if (((v[lo] & masks[msk]) != 0) && ((v[hi] & masks[msk]) == 0)) {
+            //printBinary(masks[msk]); std::cout << std::endl;
+            //printBinary(v[lo]); std::cout << " <- swap -> ";
+            //printBinary(v[hi]); std::cout << std::endl;
             //printf("lo: %d hi: %d\n", lo, hi);
             uint16_t aux = v[lo];
             v[lo] = v[hi];
             v[hi] = aux;
-            changed = true;
         }
+        if ((v[lo] & masks[msk]) == 0) lo++;
+        if ((v[hi] & masks[msk]) != 0) hi--;
     }
-    if (changed)
+    if (lo >= hi)
     {
+        if ((v[lo] & masks[msk]) != 0) lo--;
+        if ((v[hi] & masks[msk]) == 0) hi++;
         sort(v, b, lo, msk + 1);
         sort(v, hi, e, msk + 1);
     } else {
-        sort(v, b, e, msk + 1);
+        if (b < e) sort(v, b, e, msk + 1);
     }
 }
 
-#ifndef TESTS
+#ifdef TESTS
 int main ()
 {
-    #define NOINTS 11
-    #if 0
+    srand(111111);
+    #define NOINTS 1000000
+    #if 1
     uint16_t *myints = new uint16_t[NOINTS];
+    std::cout << "#pragma once" << std::endl;
+    std::cout << "uint16_t myints[] = {";
     for (int i = 0; i < NOINTS; i++)
     {
         myints[i] = rand();
-        std::cout << myints[i] << " ";
+        std::cout << myints[i];
+        if (i < NOINTS - 1) std::cout << ", ";
+        else std::cout << "};";
     }
     std::cout << std::endl;
     #endif
-    uint16_t myints[] = {16807, 15089, 44249, 3114, 46978, 56008, 36568, 2558, 12099, 1101, 39064};
+    return 0;
+    //uint16_t myints[] = {16807, 15089, 44249, 3114, 46978, 56008, 36568, 2558, 12099, 1101, 39064};
     std::vector<uint16_t> vector(myints, myints + NOINTS);
     std::vector<uint16_t> vector1(myints, myints + NOINTS);
     for (auto e : vector1)
@@ -100,16 +83,16 @@ int main ()
     std::cout << std::endl;
     for (auto e : vector1)
     {
-        printBinary(e);
+        printBinary(e); std::cout << std::endl;
     }
     std::cout << std::endl;
     std::sort(vector1.begin(), vector1.end());
+    sort (vector, 0, NOINTS-1, 0);
     for (auto e : vector1)
     {
         std::cout << e << " ";
     }
     std::cout << std::endl;
-    sort (vector, 0, 10, 0);
     for (auto e : vector)
     {
         std::cout << e << " ";
