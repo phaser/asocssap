@@ -54,11 +54,11 @@ void sort(std::vector<uint16_t>& v, uint16_t b, uint16_t e, int msk)
     }
 }
 
-#ifdef TESTS
+#ifndef TESTS
 int main ()
 {
     srand(111111);
-    #define NOINTS 1000000
+    #define NOINTS 20
     #if 1
     uint16_t *myints = new uint16_t[NOINTS];
     std::cout << "#pragma once" << std::endl;
@@ -72,10 +72,8 @@ int main ()
     }
     std::cout << std::endl;
     #endif
-    return 0;
     //uint16_t myints[] = {16807, 15089, 44249, 3114, 46978, 56008, 36568, 2558, 12099, 1101, 39064};
     std::vector<uint16_t> vector(myints, myints + NOINTS);
-    std::vector<uint16_t> vector1(myints, myints + NOINTS);
     for (auto e : vector1)
     {
         std::cout << e << " ";
@@ -86,8 +84,8 @@ int main ()
         printBinary(e); std::cout << std::endl;
     }
     std::cout << std::endl;
-    std::sort(vector1.begin(), vector1.end());
     sort (vector, 0, NOINTS-1, 0);
+    //std::sort(vector1.begin(), vector1.end());
     for (auto e : vector1)
     {
         std::cout << e << " ";
