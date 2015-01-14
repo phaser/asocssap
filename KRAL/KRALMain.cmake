@@ -571,6 +571,7 @@ macro(link_module_dependencies PNAME)
             link_module_dependencies(${PNAME}Tests ${test})
         endforeach()
     endif ()
+    SET(LIBS_${PNAME} "" CACHE INTERNAL "" FORCE)
     endif ()
 endmacro ()
 

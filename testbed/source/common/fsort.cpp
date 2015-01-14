@@ -1,4 +1,4 @@
-#include "fsort.h"
+#include <fsort.h>
 #include <vector>
 #include <iostream>
 #include <stdint.h>
@@ -16,26 +16,15 @@ void printBinary(uint16_t n)
     std::cout << " :" << n;
 }
 
-void sort(std::vector<uint16_t>& v, uint16_t b, uint16_t e, int msk)
+void sort_rec(uint16_t *v, uint16_t b, uint16_t e, int msk)
 {
-    //printf("sort: b: %d e: %d msk: %d\n", b, e, msk);
-    //for (auto e : v)
-    //{
-    //    std::cout << e << " ";
-    //}
-    //std::cout << std::endl;
     if (msk > 15) return;
     if (b >= e) return;
     uint16_t lo = b;
     uint16_t hi = e;
-    bool changed = false;
     while (lo < hi)
     {
         if (((v[lo] & masks[msk]) != 0) && ((v[hi] & masks[msk]) == 0)) {
-            //printBinary(masks[msk]); std::cout << std::endl;
-            //printBinary(v[lo]); std::cout << " <- swap -> ";
-            //printBinary(v[hi]); std::cout << std::endl;
-            //printf("lo: %d hi: %d\n", lo, hi);
             uint16_t aux = v[lo];
             v[lo] = v[hi];
             v[hi] = aux;
@@ -47,14 +36,14 @@ void sort(std::vector<uint16_t>& v, uint16_t b, uint16_t e, int msk)
     {
         if ((v[lo] & masks[msk]) != 0) lo--;
         if ((v[hi] & masks[msk]) == 0) hi++;
-        sort(v, b, lo, msk + 1);
-        sort(v, hi, e, msk + 1);
+        if (b < lo) sort_rec(v, b, lo, msk + 1);
+        if (hi < e) sort_rec(v, hi, e, msk + 1);
     } else {
-        if (b < e) sort(v, b, e, msk + 1);
+        if (b < e) sort_rec(v, b, e, msk + 1);
     }
 }
 
-#ifndef TESTS
+#ifdef TESTS
 int main ()
 {
     srand(111111);

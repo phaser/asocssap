@@ -18,7 +18,15 @@ add_module_dependency(${PROJ_NAME} "timus" "")
 add_module_dependency(${PROJ_NAME} "codeforces" "")
 add_module_dependency(${PROJ_NAME} "usaco" "")
 
+if (TESTS)
+    add_module_dependency(${PROJ_NAME}_LIB "gtest-entrypoint" "dev")
+endif ()
+
 build_module(${PROJ_NAME} ${BUILD_TYPE})
 
 link_module_dependencies(${PROJ_NAME})
+if (TESTS)
+    link_module_dependencies(${PROJ_NAME}_LIB)
+endif ()
 
+clear_cache()
