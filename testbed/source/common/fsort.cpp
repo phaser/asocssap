@@ -16,6 +16,9 @@ void printBinary(uint16_t n)
     std::cout << " :" << n;
 }
 
+/*
+ In-place Radix sort aka binary quick sort
+ */
 void sort_rec(uint16_t *v, uint16_t b, uint16_t e, int msk)
 {
     if (msk > 15) return;
