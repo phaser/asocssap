@@ -27,7 +27,6 @@ int solve_barn1(int n, std::vector<int>& c)
     int min = fb.c;
     while (barns.size() < n)
     {
-        fprintf(stderr, "sz: %d\n", barns.size());
         int max = -1;
         int bi = -1;
         int pi = -1;

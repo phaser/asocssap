@@ -11,7 +11,7 @@ LANG: C++11
 
 #define FILENAME "ariprog"
 
-//#ifndef TESTS
+#ifndef TESTS
 int main()
 {
     FILE *fin = fopen(FILENAME ".in", "r");
@@ -58,4 +58,4 @@ int main()
     fclose(fout);
     return 0;
 }
-//#endif
+#endif
