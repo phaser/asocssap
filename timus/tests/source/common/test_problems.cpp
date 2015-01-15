@@ -102,3 +102,12 @@ TEST_F(TimusProblemsTestClass, TestProblem_1009)  // NOLINT
     int result = solve_1009(2, 10);
     ASSERT_EQ(result, 90);
 }
+
+TEST_F(TimusProblemsTestClass, TestProblem_1056)  // NOLINT
+{
+    std::vector<uint16_t> r;
+    std::vector<uint16_t> input = {1, 1, 2, 2};
+    r = solve_1056(5, input, r);
+    ASSERT_EQ(r[0], 1);
+    ASSERT_EQ(r[1], 2);
+}

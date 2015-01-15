@@ -72,3 +72,5 @@ int solve_1875(std::vector<struct Point>& p);
 double solve_1185(std::vector<struct Point>& p, int r);
 double solve_1815(const Pt& p1, const Pt& p2, const Pt& p3, double w1, double w2, double w3);
 int solve_1009(int n, int k);
+using std::vector;
+vector<uint16_t>& solve_1056(int n, vector<uint16_t>& p, vector<uint16_t>& r);
