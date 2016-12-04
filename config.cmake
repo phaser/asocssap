@@ -42,3 +42,20 @@ set (CUSTOM_ARGS_${CTARGET}     "${CUSTOM_ARGS_${CTARGET}} -DDEST_PREFIX=Debug "
 set (CUSTOM_ARGS_${CTARGET}     "${CUSTOM_ARGS_${CTARGET}} -DTESTS=1 ")
 set (BUILD_TYPE_${CTARGET}      "debug")
 #set (GENERATE_CMAKELISTS_${CTARGET} True)
+
+
+# === TARGET
+set (CTARGET "testbed-win")
+list (APPEND TARGETS ${CTARGET})
+copy_target ("DEFAULT" ${CTARGET})
+set (TARGET_NAME_${CTARGET}     "${CTARGET}")
+set (PLATFORM_${CTARGET}        "win64")
+set (PROJECT_DIR_${CTARGET}     "${CMAKE_CURRENT_LIST_DIR}/testbed")
+set (BUILD_DIR_${CTARGET}       "testbed-win")
+set (PROJECT_TYPE_${CTARGET}    "Visual Studio 14")
+set (CUSTOM_ARGS_${CTARGET}     "-Wdev")
+set (CUSTOM_ARGS_${CTARGET}     "${CUSTOM_ARGS_${CTARGET}} -DRUNTIME_SUFFIX=/Debug")
+set (CUSTOM_ARGS_${CTARGET}     "${CUSTOM_ARGS_${CTARGET}} -DDEST_PREFIX=Debug ")
+set (CUSTOM_ARGS_${CTARGET}     "${CUSTOM_ARGS_${CTARGET}} -DTESTS=1 ")
+set (BUILD_TYPE_${CTARGET}      "debug")
+#set (GENERATE_CMAKELISTS_${CTARGET} True)

@@ -1,5 +1,4 @@
 cmake_minimum_required (VERSION 2.8)
-
 SET (PROJ_NAME "testbed")
 SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${KRAL_PATH}) # Necessary for all the other modules to find
                                                           # the macros in KRAL

@@ -1,10 +1,24 @@
+/*
+ID: cristia26
+PROG: combo
+LANG: C++11
+*/
 #include <stdio.h>
+#include <set>
 
 #define FILENAME "combo"
 
+int getVal(int base, int value, int offset)
+{
+    int result = value + offset;
+    result = (result < 1 ? (base + result) % base : result);
+    result = (result > base ? result % base : result);
+    result = (result == 0 ? base : result);
+    return result;
+}
+
 int main()
 {
-    int n;
     FILE *fin = fopen(FILENAME ".in", "r");
     FILE *fout = fopen(FILENAME ".out", "w");
     int base;
@@ -12,44 +26,43 @@ int main()
     int fjc[3];
     int mc[3];
     fscanf(fin, "%d%d%d%d%d%d", &fjc[0], &fjc[1], &fjc[2], &mc[0], &mc[1], &mc[2]);
-    int fjc_min[3];
-    int mc_min[3];
-    fjc_min[0] = fjc[0] - 2; fjc_min[1] = fjc[1] - 2; fjc_min[2] = fjc[2] - 2;
-    mc_min[0] = mc[0] - 2; mc_min[1] = mc[1] - 2; mc_min[2] = mc[2] - 2;
-    fjc[0] = fjc[0] + 2; fjc[1] = fjc[1] + 2; fjc[2] = fjc[2] + 2;
-    mc[0] = mc[0] + 2; mc[1] = mc[1] + 2; mc[2] = mc[2] + 2;
-/*
+
+    // printf("%d\n%d %d %d\n%d %d %d", base, fjc[0], fjc[1], fjc[2], mc[0], mc[1], mc[2]);
+
+    std::set<int> dialsfjc[3];
+    std::set<int> dialsmc[3];
+    std::set<int> dialsol[3];
     for (int i = 0; i < 3; i++)
     {
-        int c = 0;
-        if (mc_min[i] >= fjc_min[i] && mc_min[i] <= fjc[i])
+        dialsfjc[i].insert(fjc[i]);
+        dialsfjc[i].insert(getVal(base, fjc[i], -1));
+        dialsfjc[i].insert(getVal(base, fjc[i], -2));
+        dialsfjc[i].insert(getVal(base, fjc[i], 1));
+        dialsfjc[i].insert(getVal(base, fjc[i], 2));
+        dialsmc[i].insert(mc[i]);
+        dialsmc[i].insert(getVal(base, mc[i], -1));
+        dialsmc[i].insert(getVal(base, mc[i], -2));
+        dialsmc[i].insert(getVal(base, mc[i], 1));
+        dialsmc[i].insert(getVal(base, mc[i], 2));
+    }
+
+    for (int i = 0; i < 3; i++)
+    {
+        for (std::set<int>::iterator it = dialsfjc[i].begin(); it != dialsfjc[i].end(); it++)
         {
-            c += 1;
-        }
-        if (mc[i] >= fjc_min[i] && mc[i] <= fjc[i])
-        {
-            c += 2;
-        }
-        switch (c)
-        {
-            case 1: mc_min[i] = fjc[i] + 1; break;
-            case 2: mc[i] = fjc_min[i] - 1; break;
-            case 3: {
-                mc_min[i] = fjc_min[i];
-                mc[i] = fjc[i];
-                break;
+            if (dialsmc[i].find(*it) != dialsmc[i].end())
+            {
+                dialsol[i].insert(*it);
             }
+            // printf("%d ", *it);
         }
+        // printf("\n");
     }
-    */
-    int fjc_f[3];
-    int mc_f[3];
-    for (int i = 0; i < 3; i++)
-    {
-        fjc_f[i] = fjc[i] - fjc_min[i];
-        mc_f[i] = mc[i] - mc_min[i];
-    }
-    int ans = fjc_f[0] * fjc_f[1] * fjc_f[2] + mc_f[0] * mc_f[1] * mc_f[2];
-    printf("sol: %d\n", ans);
+
+    int fjcount = dialsfjc[0].size() * dialsfjc[1].size() * dialsfjc[2].size();
+    int mccount = dialsmc[0].size() * dialsmc[1].size() * dialsmc[2].size();
+    int olcount = dialsol[0].size() * dialsol[1].size() * dialsol[2].size();
+
+    fprintf(fout, "%d\n", fjcount + mccount - olcount);
     return 0;
 }
