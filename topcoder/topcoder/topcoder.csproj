@@ -53,6 +53,7 @@
     <Compile Include="CF_496A.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CF_549A.cs" />
+    <Compile Include="CF_535B.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
