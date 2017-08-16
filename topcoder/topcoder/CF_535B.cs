@@ -2,6 +2,13 @@
 
 public class CF_535B
 {
+	static int Main(string[] args)
+	{
+		string num = Console.ReadLine();
+		Console.WriteLine(new CF_535B().solve(num));
+		return 0;
+	}
+
     public int solve(string num)
     {
         int result = 0;
@@ -9,10 +16,10 @@ public class CF_535B
         {
             if (num[i] == '7')
             {
-                result |= (1 << i);
+                result |= (1 << (num.Length - i - 1));
             }
         }
-        return result + 1;
+        return result + (int)((1 - Math.Pow(2, num.Length)) / (-1));
     }
 }
 
@@ -43,6 +50,13 @@ namespace CodeForces
         {
             string num = "77";
             Assert.AreEqual(6, new CF_535B().solve(num));
+        }
+
+        [Test]
+        public void Test4()
+        {
+            string num = "474744";
+            Assert.AreEqual(83, new CF_535B().solve(num));
         }
     }
 }
