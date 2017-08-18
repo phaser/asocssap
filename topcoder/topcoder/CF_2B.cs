@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 public struct Answer
 {
@@ -8,18 +9,9 @@ public struct Answer
 
 public struct Num25
 {
-    public int value;
-    public int num0;
+    public UInt16 num2;
+    public UInt16 num5;
     public char dir;
-
-    internal void ExtractPow10()
-    {
-        while ((value % 10) == 0)
-        {
-            num0++;
-            value /= 10;
-        }
-    }
 }
 
 public class CF_2B
@@ -28,13 +20,15 @@ public class CF_2B
     {
         string[] nums;
         int n = Convert.ToInt32(Console.ReadLine());
-        int[,] mat = new int[n, n];
+        Num25[,] mat = new Num25[n, n];
         for (int i = 0; i < n; i++)
         {
             nums = Console.ReadLine().Split(' ');
             for (int j = 0; j < n; j++)
             {
-                mat[i, j] = Convert.ToInt32(nums[j]);
+                UInt64 a = Convert.ToUInt64(nums[j]);
+                mat[i, j].num2 = CF_2B.GetPow(a, 2);
+                mat[i, j].num5 = CF_2B.GetPow(a, 5);
             }
         }
         Answer ans = new CF_2B().solve(mat);
@@ -43,95 +37,106 @@ public class CF_2B
         return 0;
     }
 
-    public Answer solve(int[,] mat)
+    public Answer solve(Num25[,] mat)
     {
         Answer ans = new Answer();
+        Num25[,] pmat = mat;
+        int mw = pmat.GetLength(0); int mh = pmat.GetLength(1);
+        //pmat[0, 0].num2 += pmat[mw - 1, mh - 1].num2;
+        //pmat[0, 0].num5 += pmat[mw - 1, mh - 1].num5;
+        //pmat[mw - 1, mh - 1].num2 = 0;
+        //pmat[mw - 1, mh - 1].num5 = 0;
+
+        for (int i = 0; i < mw; i++)
+        {
+            for (int j = 0; j < mh; j++)
+            {
+                UInt16 t = (i - 1 >= 0 ? pmat[i - 1, j].num2 : UInt16.MaxValue);
+                UInt16 l = (j - 1 >= 0 ? pmat[i, j - 1].num2 : UInt16.MaxValue);
+                if (!(t == UInt16.MaxValue && l == UInt16.MaxValue))
+                {
+                    pmat[i, j].num2 += (t <= l ? t : l);
+                }
+                t = (i - 1 >= 0 ? pmat[i - 1, j].num5 : UInt16.MaxValue);
+                l = (j - 1 >= 0 ? pmat[i, j - 1].num5 : UInt16.MaxValue);
+                if (!(t == UInt16.MaxValue && l == UInt16.MaxValue))
+                {
+                    pmat[i, j].num5 += (t <= l ? t : l);
+                }
+            }
+        }
+
+        ans.numZeroes = Math.Min(pmat[mw - 1, mh - 1].num2, pmat[mw - 1, mh - 1].num5);
+        StringBuilder sb = new StringBuilder();
+        if (ans.numZeroes == pmat[mw - 1, mh - 1].num2)
+        {
+            int cx = mw - 1;
+            int cy = mh - 1;
+            while (!(cx == 0 && cy == 0))
+            {
+                UInt16 t = cx - 1 >= 0 ? pmat[cx - 1, cy].num2 : UInt16.MaxValue;
+                UInt16 l = cy - 1 >= 0 ? pmat[cx, cy - 1].num2 : UInt16.MaxValue;
+                if (t < l)
+                {
+                    sb.Append("D");
+                    cx--;
+                } else
+                {
+                    sb.Append("R");
+                    cy--;
+                }
+            }
+        }
+        else
+        {
+            int cx = mw - 1;
+            int cy = mh - 1;
+            while (!(cx == 0 && cy == 0))
+            {
+                UInt16 t = cx - 1 >= 0 ? pmat[cx - 1, cy].num5 : UInt16.MaxValue;
+                UInt16 l = cy - 1 >= 0 ? pmat[cx, cy - 1].num5 : UInt16.MaxValue;
+                if (t < l)
+                {
+                    sb.Append("D");
+                    cx--;
+                }
+                else
+                {
+                    sb.Append("R");
+                    cy--;
+                }
+            }
+        }
+        char[] trail = sb.ToString().ToCharArray();
+        Array.Reverse(trail);
+        ans.trail = new string(trail);
+        return ans;
+    }
+
+    public static ushort GetPow(UInt64 v, UInt64 p)
+    {
+        UInt64 r = v;
+        ushort c = 0;
+        while ((r % p) == 0)
+        {
+            c++;
+            r /= p;
+        }
+        return c;
+    }
+
+    public static Num25[,] GetProperMatrix(int[,] mat)
+    {
         Num25[,] pmat = new Num25[mat.GetLength(0), mat.GetLength(1)];
         for (int i = 0; i < pmat.GetLength(0); i++)
         {
             for (int j = 0; j < pmat.GetLength(1); j++)
             {
-                pmat[i, j].value = mat[i, j];
-                pmat[i, j].ExtractPow10();
+                pmat[i, j].num2 = CF_2B.GetPow((UInt64)mat[i, j], 2);
+                pmat[i, j].num5 = CF_2B.GetPow((UInt64)mat[i, j], 5);
             }
         }
-        pmat[0, 0].value *= pmat[pmat.GetLength(0) - 1, pmat.GetLength(1) - 1].value;
-        pmat[pmat.GetLength(0) - 1, pmat.GetLength(1) - 1].value = 1;
-        pmat[0, 0].ExtractPow10();
-
-        for (int i = 0; i < pmat.GetLength(0); i++)
-        {
-            for (int j = 0; j < pmat.GetLength(1); j++)
-            {
-                Num25 top = new Num25(); top.num0 = int.MaxValue; top.value = int.MaxValue;
-                Num25 left = new Num25(); left.num0 = int.MaxValue; left.value = int.MaxValue;
-                if (i - 1 >= 0)
-                {
-                    top.num0 = pmat[i - 1, j].num0 + pmat[i, j].num0;
-                    top.value = pmat[i - 1, j].value * pmat[i, j].value;
-                }
-                if (j - 1 >= 0)
-                {
-                    left.num0 = pmat[i, j - 1].num0 + pmat[i, j].num0;
-                    left.value = pmat[i, j - 1].value * pmat[i, j].value;
-                }
-                Num25 choice = new Num25();
-                choice.dir = 'N';
-                top.ExtractPow10();
-                left.ExtractPow10();
-                if (left.num0 != int.MaxValue || top.num0 != int.MaxValue)
-                {
-                    if (left.num0 == top.num0)
-                    {
-                        int tp2 = NumPow2(top.value);
-                        int lp2 = NumPow2(left.value);
-                        int tp5 = NumPow5(top.value);
-                        int lp5 = NumPow5(top.value);
-                        if (tp2 + tp5 <= lp2 + lp5)
-                        {
-                            choice = top;
-                            choice.dir = 'D';
-                        }
-                        else
-                        {
-                            choice = left;
-                            choice.dir = 'R';
-                        } 
-                    }
-                    else
-                    if (left.num0 < top.num0)
-                    {
-                        choice = left;
-                        choice.dir = 'R';
-                    }
-                    else
-                    {
-                        choice = top;
-                        choice.dir = 'D';
-                    }
-                    if (choice.dir != 'N')
-                    {
-                        pmat[i, j].value = choice.value;
-                        pmat[i, j].num0 = choice.num0;
-                        pmat[i, j].dir = choice.dir;
-                    }
-                }
-            }
-        }
-
-        ans.numZeroes = pmat[pmat.GetLength(0) - 1, pmat.GetLength(1) - 1].num0;
-        ans.trail = "";
-        int cx = pmat.GetLength(0) - 1; int cy = pmat.GetLength(1) - 1;
-        while (!(cx == 0 && cy == 0))
-        {
-            ans.trail += pmat[cx, cy].dir;
-            if (pmat[cx, cy].dir == 'D') { cx--; }
-            else { cy--; }
-        }
-        char[] ll = ans.trail.ToCharArray();
-        Array.Reverse(ll);
-        ans.trail = new string(ll);
-        return ans;
+        return pmat;
     }
 
     private int NumPow5(int value)
@@ -176,9 +181,9 @@ namespace CodeForces
                 { 4, 5, 6 },
                 { 7, 8, 9 }
             };
-            Answer ans = new CF_2B().solve(mat);
+            Answer ans = new CF_2B().solve(CF_2B.GetProperMatrix(mat));
             Assert.AreEqual(0, ans.numZeroes);
-            Assert.AreEqual("RRDD", ans.trail);
+            Assert.AreEqual("DDRR", ans.trail);
         }
 
         [Test]
@@ -190,9 +195,9 @@ namespace CodeForces
                 { 10, 9, 4 },
                 { 6, 5, 3 }
             };
-            Answer ans = new CF_2B().solve(mat);
+            Answer ans = new CF_2B().solve(CF_2B.GetProperMatrix(mat));
             Assert.AreEqual(1, ans.numZeroes);
-            Assert.AreEqual("RDRD", ans.trail);
+            Assert.AreEqual("DRRD", ans.trail);
         }
 
         [Test]
@@ -205,7 +210,7 @@ namespace CodeForces
                 { 7, 9, 1, 7 },
                 { 1, 7, 1, 5 }
             };
-            Answer ans = new CF_2B().solve(mat);
+            Answer ans = new CF_2B().solve(CF_2B.GetProperMatrix(mat));
             Assert.AreEqual(0, ans.numZeroes);
             Assert.AreEqual("DDDRRR", ans.trail);
         }
@@ -222,8 +227,9 @@ namespace CodeForces
                 { 5, 8, 10, 6, 3, 8 },
                 { 3, 10, 5, 4, 3, 4 }
                 };
-            Answer ans = new CF_2B().solve(mat);
+            Answer ans = new CF_2B().solve(CF_2B.GetProperMatrix(mat));
             Assert.AreEqual(1, ans.numZeroes);
+            Assert.AreEqual("DDRRDRDDRR", ans.trail);
         }
 
         [Test]
@@ -234,7 +240,7 @@ namespace CodeForces
             for (int i = 0; i < 20; i++)
                 for (int j = 0; j < 20; j++)
                     mat[i, j] = (int)(rand.NextDouble() * 500);
-            Answer ans = new CF_2B().solve(mat);
+            Answer ans = new CF_2B().solve(CF_2B.GetProperMatrix(mat));
         }
     }
 }
