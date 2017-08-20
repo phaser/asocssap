@@ -31,6 +31,21 @@ public class Geometry
 		line[1] = ab + line[0];
 		return line;
     }
+
+    public static Vector2 CircumCircleCenter(Vector2 a, Vector2 b, Vector2 c)
+    {
+		var ab = Geometry.LineMediator(a, b);
+		var ac = Geometry.LineMediator(a, c);
+        var bc = Geometry.LineMediator(b, c);
+
+		Vector2 p1 = Geometry.LineLineIntersection(ab[0], ab[1], ac[0], ac[1]);
+        Vector2 p2 = Geometry.LineLineIntersection(ab[0], ab[1], bc[0], bc[1]);
+        if (Math.Abs(p1.x - p2.x) > EPSILON || Math.Abs(p2.y - p2.y) > EPSILON)
+        {
+            throw new ArgumentException("No circumcircle");
+        }
+		return p1;
+    }
 }
 
 public class Vector2
@@ -102,6 +117,14 @@ public class Vector2
     public static Vector2 one = new Vector2(1.0f, 1.0f);
 }
 
+public class CodeForces_1C
+{
+    static int Main(string[] args)
+    {
+        return 0;
+    }
+}
+
 #if !ONLINE_JUDGE
 namespace Tests
 {
@@ -154,7 +177,7 @@ namespace Tests
         }
 
         [Test]
-        public void TestFindCircumCenter()
+        public void TestLineIntersection()
         {
             Vector2 a = new Vector2(0.0f, 0.0f);
             Vector2 b = new Vector2(0.0f, 1.0f);
@@ -166,6 +189,27 @@ namespace Tests
             Vector2 ip = Geometry.LineLineIntersection(ab[0], ab[1], ac[0], ac[1]);
             Assert.AreEqual(0.5f, ip.x);
             Assert.AreEqual(0.5f, ip.y);
+        }
+
+        [Test]
+        public void TestCircumCircle()
+        {
+			Vector2 a = new Vector2(0.0f, 0.0f);
+			Vector2 b = new Vector2(0.0f, 1.0f);
+			Vector2 c = new Vector2(1.0f, 1.0f);
+			Vector2 center = Geometry.CircumCircleCenter(a, b, c);
+            Assert.AreEqual(0.5f, center.x);
+            Assert.AreEqual(0.5f, center.y);
+        }
+
+        [Test]
+        public void TestCircumCircle2()
+        {
+            Vector2 a = new Vector2(76.820252f, 66.709341f);
+            Vector2 b = new Vector2(61.392328f, 82.684207f);
+            Vector2 c = new Vector2(44.267775f, -2.378694f);
+            Vector2 center = Geometry.CircumCircleCenter(a, b, c);
+            float r = (a - center).length;
         }
     }
 }
