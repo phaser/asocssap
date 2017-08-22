@@ -1,0 +1,12 @@
+D:\projects\asocssap\codeforces\CFVSProj\CFVSProj\bin\Debug\netcoreapp1.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\projects\asocssap\codeforces\CFVSProj\CFVSProj\bin\Debug\netcoreapp1.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\projects\asocssap\codeforces\CFVSProj\CFVSProj\bin\Debug\netcoreapp1.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\projects\asocssap\codeforces\CFVSProj\CFVSProj\bin\Debug\netcoreapp1.1\CFVSProj.deps.json
+D:\projects\asocssap\codeforces\CFVSProj\CFVSProj\bin\Debug\netcoreapp1.1\CFVSProj.runtimeconfig.json
+D:\projects\asocssap\codeforces\CFVSProj\CFVSProj\bin\Debug\netcoreapp1.1\CFVSProj.runtimeconfig.dev.json
+D:\projects\asocssap\codeforces\CFVSProj\CFVSProj\bin\Debug\netcoreapp1.1\CFVSProj.dll
+D:\projects\asocssap\codeforces\CFVSProj\CFVSProj\bin\Debug\netcoreapp1.1\CFVSProj.pdb
+D:\projects\asocssap\codeforces\CFVSProj\CFVSProj\obj\Debug\netcoreapp1.1\CFVSProj.csprojResolveAssemblyReference.cache
+D:\projects\asocssap\codeforces\CFVSProj\CFVSProj\obj\Debug\netcoreapp1.1\CFVSProj.AssemblyInfo.cs
+D:\projects\asocssap\codeforces\CFVSProj\CFVSProj\obj\Debug\netcoreapp1.1\CFVSProj.dll
+D:\projects\asocssap\codeforces\CFVSProj\CFVSProj\obj\Debug\netcoreapp1.1\CFVSProj.pdb

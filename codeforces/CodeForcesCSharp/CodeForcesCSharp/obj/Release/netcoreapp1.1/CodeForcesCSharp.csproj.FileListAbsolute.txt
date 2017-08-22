@@ -1,9 +1,0 @@
-D:\projects\asocssap\codeforces\CodeForcesCSharp\CodeForcesCSharp\bin\Release\netcoreapp1.1\CodeForcesCSharp.deps.json
-D:\projects\asocssap\codeforces\CodeForcesCSharp\CodeForcesCSharp\bin\Release\netcoreapp1.1\CodeForcesCSharp.runtimeconfig.json
-D:\projects\asocssap\codeforces\CodeForcesCSharp\CodeForcesCSharp\bin\Release\netcoreapp1.1\CodeForcesCSharp.runtimeconfig.dev.json
-D:\projects\asocssap\codeforces\CodeForcesCSharp\CodeForcesCSharp\bin\Release\netcoreapp1.1\CodeForcesCSharp.dll
-D:\projects\asocssap\codeforces\CodeForcesCSharp\CodeForcesCSharp\bin\Release\netcoreapp1.1\CodeForcesCSharp.pdb
-D:\projects\asocssap\codeforces\CodeForcesCSharp\CodeForcesCSharp\obj\Release\netcoreapp1.1\CodeForcesCSharp.AssemblyInfo.cs
-D:\projects\asocssap\codeforces\CodeForcesCSharp\CodeForcesCSharp\obj\Release\netcoreapp1.1\CodeForcesCSharp.dll
-D:\projects\asocssap\codeforces\CodeForcesCSharp\CodeForcesCSharp\obj\Release\netcoreapp1.1\CodeForcesCSharp.pdb
-D:\projects\asocssap\codeforces\CodeForcesCSharp\CodeForcesCSharp\obj\Release\netcoreapp1.1\CodeForcesCSharp.csprojResolveAssemblyReference.cache
