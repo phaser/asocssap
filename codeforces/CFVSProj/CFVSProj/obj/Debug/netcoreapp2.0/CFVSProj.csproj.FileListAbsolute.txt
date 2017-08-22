@@ -1,0 +1,14 @@
+/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/bin/Debug/netcoreapp2.0/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/bin/Debug/netcoreapp2.0/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/bin/Debug/netcoreapp2.0/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/bin/Debug/netcoreapp2.0/CFVSProj.deps.json
+/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/bin/Debug/netcoreapp2.0/CFVSProj.runtimeconfig.json
+/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/bin/Debug/netcoreapp2.0/CFVSProj.runtimeconfig.dev.json
+/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/bin/Debug/netcoreapp2.0/CFVSProj.dll
+/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/bin/Debug/netcoreapp2.0/CFVSProj.pdb
+/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/obj/Debug/netcoreapp2.0/CFVSProj.csprojResolveAssemblyReference.cache
+/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/obj/Debug/netcoreapp2.0/CFVSProj.csproj.CoreCompileInputs.cache
+/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/obj/Debug/netcoreapp2.0/CFVSProj.AssemblyInfoInputs.cache
+/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/obj/Debug/netcoreapp2.0/CFVSProj.AssemblyInfo.cs
+/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/obj/Debug/netcoreapp2.0/CFVSProj.dll
+/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/obj/Debug/netcoreapp2.0/CFVSProj.pdb

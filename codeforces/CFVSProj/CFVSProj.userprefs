@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{06712AE9-A97B-4B87-9235-CE7076AB1406}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CFVSProj/CF_489C.cs">
+    <Files>
+      <File FileName="CFVSProj/CF_489C.cs" Line="52" Column="16" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="CFVSProj" expanded="True">
+            <Node name="CFVSProj" expanded="True">
+              <Node name="CodeForces" expanded="True">
+                <Node name="Test_CF_489C" expanded="True">
+                  <Node name="Test3" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/CF_489C.cs" relfile="CFVSProj/CF_489C.cs" line="8" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.CFVSProj PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+</Properties>

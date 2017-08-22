@@ -57,6 +57,7 @@
     <Compile Include="CF_549A.cs" />
     <Compile Include="CF_535B.cs" />
     <Compile Include="Geometry.cs" />
+    <Compile Include="CF_845B.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
