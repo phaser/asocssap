@@ -1,8 +1,9 @@
 ﻿<Properties StartupConfiguration="{06712AE9-A97B-4B87-9235-CE7076AB1406}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="CFVSProj/CF_489C.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CFVSProj/CF_701C.cs">
     <Files>
-      <File FileName="CFVSProj/CF_489C.cs" Line="3" Column="14" />
-      <File FileName="CFVSProj/CF_285B.cs" Line="36" Column="57" />
+      <File FileName="CFVSProj/CF_489C.cs" Line="117" Column="2" />
+      <File FileName="CFVSProj/CF_285B.cs" Line="2" Column="1" />
+      <File FileName="CFVSProj/CF_701C.cs" Line="31" Column="9" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
@@ -10,7 +11,9 @@
           <Node name="CFVSProj" expanded="True">
             <Node name="CFVSProj" expanded="True">
               <Node name="CodeForces" expanded="True">
-                <Node name="Test_CF_285B" expanded="True" selected="True" />
+                <Node name="Test_CF_701C" expanded="True">
+                  <Node name="Test3" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
@@ -22,6 +25,9 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/CF_489C.cs" relfile="CFVSProj/CF_489C.cs" line="8" column="1" />
+      <Breakpoint file="/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/CF_701C.cs" relfile="CFVSProj/CF_701C.cs" line="54" column="32" />
+      <Breakpoint file="/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/CF_701C.cs" relfile="CFVSProj/CF_701C.cs" line="8" column="1" />
+      <Breakpoint file="/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/CF_701C.cs" relfile="CFVSProj/CF_701C.cs" line="13" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

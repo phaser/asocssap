@@ -49,6 +49,7 @@ public class CF_489C
         return "" + smin + " " + smax;
     }
 
+#if ONLINE_JUDGE
     static int Main(string[] args)
     {
         string line = Console.ReadLine();
@@ -58,6 +59,7 @@ public class CF_489C
         Console.WriteLine(new CF_489C().solve(m, s));
         return 0;
     }
+#endif
 }
 
 #if !ONLINE_JUDGE
