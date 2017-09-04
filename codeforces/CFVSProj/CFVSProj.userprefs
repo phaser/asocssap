@@ -1,7 +1,8 @@
 ﻿<Properties StartupConfiguration="{06712AE9-A97B-4B87-9235-CE7076AB1406}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="CFVSProj/CF_489C.cs">
     <Files>
-      <File FileName="CFVSProj/CF_489C.cs" Line="52" Column="16" />
+      <File FileName="CFVSProj/CF_489C.cs" Line="3" Column="14" />
+      <File FileName="CFVSProj/CF_285B.cs" Line="36" Column="57" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
@@ -9,9 +10,7 @@
           <Node name="CFVSProj" expanded="True">
             <Node name="CFVSProj" expanded="True">
               <Node name="CodeForces" expanded="True">
-                <Node name="Test_CF_489C" expanded="True">
-                  <Node name="Test3" selected="True" />
-                </Node>
+                <Node name="Test_CF_285B" expanded="True" selected="True" />
               </Node>
             </Node>
           </Node>

@@ -9,7 +9,8 @@ public class CF_489C
             if (m == 1)
             {
                 return "0 0";
-            } else
+            }
+            else
             {
                 return "-1 -1";
             }
