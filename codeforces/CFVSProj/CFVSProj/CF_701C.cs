@@ -4,28 +4,84 @@ using System.Text;
 
 public class CF_701C
 {
-    uint[] letterCount; 
+    public long Set(long value, char l)
+    {
+        value |= ((long)1 << (l - 'A'));
+        return value;
+    }
+
+    public long Unset(long value, char l)
+    {
+        value &= (~((long)1 << (l - 'A')));
+        return value;
+    }
+
+    public bool Has(long dict, char l)
+    {
+        return ((dict & ((long)1 << (l - 'A'))) != 0);
+    }
+
     public int solve(string flats)
     {
-        letterCount = new uint['z' - 'A' + 1];
-        foreach (var c in flats)
+        long lLetterCount = 0;
+        int[] count = new int[60];
+        for (int i = 0; i < flats.Length; i++)
         {
-            letterCount[c - 'A']++;
-        }
-        int p1 = 0;
-        while (p1 < flats.Length && letterCount[flats[p1] - 'A'] > 1)
-        {
-            letterCount[flats[p1] - 'A']--;
-            p1++;
+            lLetterCount = Set(lLetterCount, flats[i]);
         }
 
-        int p2 = flats.Length - 1;
-        while (p2 >= 0 && letterCount[flats[p2] - 'A'] > 1)
+        int l = 0, r = 0;
+        int ans = int.MaxValue;
+        long maxLetterCount = NumberOfSetBits(lLetterCount);
+        long currentLetterCount = 0;
+        long numCurrentLetterCount = 0;
+        currentLetterCount = Set(currentLetterCount, flats[r]);
+        numCurrentLetterCount = NumberOfSetBits(currentLetterCount);
+        count[flats[r] - 'A']++;
+        while (l < flats.Length)
         {
-            letterCount[flats[p2] - 'A']--;
-            p2--;
+            while (r < flats.Length && numCurrentLetterCount < maxLetterCount)
+            {
+                r++;
+                if (r < flats.Length)
+                {
+                    currentLetterCount = Set(currentLetterCount, flats[r]);
+                    numCurrentLetterCount = NumberOfSetBits(currentLetterCount);
+                    count[flats[r] - 'A']++;
+                }
+            }
+            if (numCurrentLetterCount >= maxLetterCount)
+            {
+                ans = Math.Min(ans, r - l + 1);
+            }
+
+            if (count[flats[l] - 'A'] == 1)
+            {
+                currentLetterCount = Unset(currentLetterCount, flats[l]);
+                numCurrentLetterCount = NumberOfSetBits(currentLetterCount);
+            }
+            count[flats[l] - 'A']--;
+
+            l++;
         }
-        return p2 - p1 + 1;
+        return ans;
+    }
+
+    static long NumberOfSetBits(long i)
+    {
+        i = i - ((i >> 1) & 0x5555555555555555);
+        i = (i & 0x3333333333333333) + ((i >> 2) & 0x3333333333333333);
+        return (((i + (i >> 4)) & 0xF0F0F0F0F0F0F0F) * 0x101010101010101) >> 56;
+    }
+
+    static long GetLettersEncoded(string s, int start, int end)
+    {
+        long enc = 0;
+        for (int i = start; i <= end; i++)
+        {
+            enc |= ((long)(1) << (s[i] - 'A'));
+        }
+        return enc;
     }
 
     static void Main(string[] args)
@@ -59,29 +115,13 @@ namespace CodeForces
         [TestMethod]
         public void Test2()
         {
-            int perchar = 10000 / 52;
-            StringBuilder flats = new StringBuilder();
-            for (char c = 'A'; c <= 'Z'; c++)
-            {
-                for (int i = 0; i < perchar; i++)
-                {
-                    flats.Append(c);
-                }
-            }
-			for (char c = 'a'; c <= 'z'; c++)
-			{
-				for (int i = 0; i < perchar; i++)
-				{
-                    flats.Append(c);
-				}
-			}
-            File.WriteAllText("/Users/phaser/input.txt", flats.ToString());
+            Assert.AreEqual(5, new CF_701C().solve("aaBCCe"));
 		}
 
         [TestMethod]
         public void Test3()
         {
-            Assert.AreEqual(9986, new CF_701C().solve(File.ReadAllText("/Users/phaser/input.txt")));    
+            Assert.AreEqual(1, new CF_701C().solve("a"));
         }
 	}
 }
