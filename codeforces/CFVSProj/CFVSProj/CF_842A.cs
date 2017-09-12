@@ -4,14 +4,26 @@ public class CF_842A
 {
     public string solve(int l, int r, int a, int b, int k)
     {
-        for (int j = a; j <= b; j++)
+        int lp = a;
+        int rp = l;
+        while (lp <= b)
         {
-            for (int i = l; i <= r; i++)
+            while (rp <= r)
             {
-                if (i % j == 0 && i / j == k)
+                if (rp % lp == 0 && rp / lp == k)
                 {
                     return "YES";
                 }
+                rp++;
+            }
+
+            if (rp / lp >= k)
+            {
+                lp++;
+                rp = l;
+            } else
+            {
+                return "NO";
             }
         }
         return "NO";
@@ -50,6 +62,12 @@ namespace CodeForces
 		{
 			Assert.AreEqual("NO", new CF_842A().solve(1, 5, 6, 10, 1));
 		}
+
+        [TestMethod]
+        public void Test3()
+        {
+            Assert.AreEqual("YES", new CF_842A().solve(96918, 97018, 10077, 86510, 9));
+        }
 	}
 }
 #endif
