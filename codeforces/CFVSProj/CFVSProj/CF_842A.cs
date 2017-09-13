@@ -8,7 +8,7 @@ public class CF_842A
         int rp = l;
         while (lp <= b)
         {
-            while (rp <= r)
+            while (rp < r)
             {
                 if (rp % lp == 0 && rp / lp == k)
                 {
@@ -16,10 +16,19 @@ public class CF_842A
                 }
                 rp++;
             }
-
+            if (rp % lp == 0 && rp / lp == k)
+            {
+                return "YES";
+            }
             if (rp / lp >= k)
             {
-                lp++;
+                bool changed = false;
+                while (rp / lp > k && lp < b)
+                {
+                    lp++;
+                    changed = true;
+                }
+                if (!changed) lp++;
                 rp = l;
             } else
             {
@@ -67,6 +76,24 @@ namespace CodeForces
         public void Test3()
         {
             Assert.AreEqual("YES", new CF_842A().solve(96918, 97018, 10077, 86510, 9));
+        }
+
+        [TestMethod]
+        public void Test4()
+        {
+            Assert.AreEqual("NO", new CF_842A().solve(1000000, 10000000, 1, 100000, 1));
+        }
+
+        [TestMethod]
+        public void Test5()
+        {
+            Assert.AreEqual("YES", new CF_842A().solve(100, 200, 1, 20, 5));
+        }
+
+        [TestMethod]
+        public void Test6()
+        {
+            Assert.AreEqual("YES", new CF_842A().solve(2000, 2001, 1, 3, 1000));
         }
 	}
 }
