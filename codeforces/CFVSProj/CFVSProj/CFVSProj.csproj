@@ -2,7 +2,7 @@
 
   <PropertyGroup>    
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <StartupObject>CF_6C</StartupObject>
+    <StartupObject>CF_224B</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
