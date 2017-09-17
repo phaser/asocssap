@@ -12,36 +12,33 @@ public class CF_224B
     {
         CF_224B.Result result = new CF_224B.Result();
         result.l = -1; result.r = -1;
-        int l = -1; int r = 0;
-        HashSet<int> dints = new HashSet<int>();
-        int[] countDistinct = new int[nums.Length];
+        int l = -1; int r = -1;
+        Dictionary<int, int> numCounts = new Dictionary<int, int>();
         for (int i = 0; i < nums.Length; i++)
         {
-            dints.Add(nums[i]);
-            countDistinct[i] = dints.Count;
+            if (!numCounts.ContainsKey(nums[i])) numCounts.Add(nums[i], 0);
+            numCounts[nums[i]]++;
+            if (numCounts.Count == k)
+            {
+                r = i;
+                break;
+            }
+        }
+        if (r == -1)
+        {
+            return result;
         }
 
-        int minl = -1;
-        int minr = -1;
-        while (++l < nums.Length)
+        while (++l <= r && numCounts.Count == k)
         {
-            while (r < nums.Length && (countDistinct[r] - countDistinct[l] + 1) < k)
+            numCounts[nums[l]]--;
+            if (numCounts[nums[l]] == 0)
             {
-                r++;
-            }
-            if (r < nums.Length && (countDistinct[r] - countDistinct[l] + 1) == k)
-            {
-                while (l+1 < nums.Length && (countDistinct[r] - countDistinct[l+1] + 1) == k)
-                {
-                    l++;   
-                }
-                minl = l;
-                minr = r;
-                result.l = l + 1;
-                result.r = r + 1;
-                return result;
+                numCounts.Remove(nums[l]);
             }
         }
+        result.l = l;
+        result.r = r + 1;
         return result;
     }
 
