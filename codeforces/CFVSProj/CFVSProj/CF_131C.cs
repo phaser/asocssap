@@ -58,17 +58,6 @@ namespace CodeForces
 		}
 
         [TestMethod]
-        public void Test2()
-        {
-            long c = new CF_131C().C(5, 4);
-            Assert.AreEqual(5, c);
-            c = new CF_131C().C(5, 2);
-            Assert.AreEqual(10, c);
-            c = new CF_131C().C(1, 1);
-            Assert.AreEqual(1, c);
-        }
-
-        [TestMethod]
         public void Test3()
         {
             Assert.AreEqual(3, new CF_131C().solve(4, 3, 5));

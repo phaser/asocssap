@@ -1,9 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\cbidea\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\cbidea\\.nuget\\packages",
-      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      "/Users/phaser/.dotnet/store/|arch|/|tfm|",
+      "/Users/phaser/.nuget/packages"
     ]
   }
 }
