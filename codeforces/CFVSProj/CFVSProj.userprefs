@@ -1,15 +1,19 @@
-﻿<Properties StartupConfiguration="{06712AE9-A97B-4B87-9235-CE7076AB1406}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="CFVSProj/CF_859C.cs">
+﻿<Properties StartupConfiguration="{06712AE9-A97B-4B87-9235-CE7076AB1406}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CFVSProj/CF_289A.cs">
     <Files>
       <File FileName="CFVSProj/CF_489C.cs" Line="8" Column="1" />
       <File FileName="CFVSProj/CF_285B.cs" Line="2" Column="1" />
       <File FileName="CFVSProj/CF_701C.cs" Line="63" Column="1" />
       <File FileName="CFVSProj/CF_842A.cs" Line="50" Column="6" />
       <File FileName="CFVSProj/CF_224B.cs" Line="32" Column="1" />
-      <File FileName="CFVSProj/CF_164B.cs" Line="36" Column="7" />
-      <File FileName="CFVSProj/CF_131C.cs" Line="12" Column="1" />
-      <File FileName="CFVSProj/CF_859C.cs" Line="7" Column="1" />
+      <File FileName="CFVSProj/CF_164B.cs" Line="1" Column="1" />
+      <File FileName="CFVSProj/CF_131C.cs" Line="1" Column="1" />
+      <File FileName="CFVSProj/CF_859C.cs" Line="58" Column="20" />
       <File FileName="CFVSProj/CF_839C.cs" Line="78" Column="1" />
+      <File FileName="CFVSProj/CF_289A.cs" Line="36" Column="60" />
+      <File FileName="CFVSProj/CF_854B.cs" Line="1" Column="1" />
+      <File FileName="CFVSProj/CF_854A.cs" Line="74" Column="25" />
+      <File FileName="CFVSProj/CF_845A.cs" Line="84" Column="7" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
@@ -17,9 +21,7 @@
           <Node name="CFVSProj" expanded="True">
             <Node name="CFVSProj" expanded="True">
               <Node name="CodeForces" expanded="True">
-                <Node name="Test_CF_859C" expanded="True">
-                  <Node name="Test3" selected="True" />
-                </Node>
+                <Node name="Test_CF_289A" expanded="True" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -29,9 +31,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/phaser/projects/asocssap/codeforces/CFVSProj/CFVSProj/CF_859C.cs" relfile="CFVSProj/CF_859C.cs" line="48" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.CFVSProj PreferredExecutionTarget="MonoDevelop.Default" />
