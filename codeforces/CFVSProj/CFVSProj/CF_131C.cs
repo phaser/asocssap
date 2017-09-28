@@ -58,6 +58,11 @@ namespace CodeForces
 		}
 
         [TestMethod]
+        public void Test2()
+        {
+        }
+
+        [TestMethod]
         public void Test3()
         {
             Assert.AreEqual(3, new CF_131C().solve(4, 3, 5));
