@@ -221,7 +221,7 @@ namespace CodeForces
         [TestMethod]
         public void Test4()
         {
-			int num = 100000;
+			int num = 1000;
 			Dictionary<long, int> cities = new Dictionary<long, int>();
 			HashSet<int>[] links = new HashSet<int>[num + 1];
 			for (int i = 0; i < links.Length; i++)
@@ -235,7 +235,7 @@ namespace CodeForces
 				participants[i - 2] = 1;
 			}
 			var result = new CF_566C().solve(cities, links, participants);
-			Assert.AreEqual(50000, result.city);
+			Assert.AreEqual(500, result.city);
 			//Assert.AreEqual(13790.299032633038, result.cost);
 		}
 	}
