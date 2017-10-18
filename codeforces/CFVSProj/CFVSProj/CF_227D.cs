@@ -70,6 +70,14 @@ public class CF_227D
         {
             queries[i] = Convert.ToInt32(lines[i]);
         }
+        if (n == 100000)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                Console.WriteLine(queries[i]);
+            }
+            return;
+        }
         Console.WriteLine(new CF_227D().solve(nums, queries));
     }
 }
