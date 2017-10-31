@@ -31,21 +31,19 @@ public class CF_227D
             sum = 0;
             long pi = 0;
             bool itsok = true;
+            pi = 0;
             while (itsok)
             {
-                pi = k * (idx - 1);
-                if (pi >= nums.Length)
+                long ci = pi + (long)Math.Pow(k, idx);
+                if (ci >= nums.Length)
                 {
                     itsok = false;
                 }
-                else
-                {
-                    long ci = k * idx;
-                    ci = (ci >= nums.Length ? nums.Length - 1 : ci);
-                    sum += (sums[ci] - sums[pi]) * idx;
-                    idx++;
-                }
-            }
+                ci = (ci >= nums.Length ? nums.Length - 1 : ci);
+                sum += (sums[ci] - sums[pi]) * idx;
+				pi = ci;
+				idx++;
+			}
             sb.Append(sum);
             sb.Append(" ");
             cachedSums[k] = sum;
