@@ -5765,11 +5765,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\projects\\asocssap\\codeforces\\CFVSProj\\CFVSProj\\CFVSProj.csproj",
+      "projectUniqueName": "d:\\projects\\asocssap\\codeforces\\CFVSProj\\CFVSProj\\CFVSProj.csproj",
       "projectName": "CFVSProj",
-      "projectPath": "D:\\projects\\asocssap\\codeforces\\CFVSProj\\CFVSProj\\CFVSProj.csproj",
+      "projectPath": "d:\\projects\\asocssap\\codeforces\\CFVSProj\\CFVSProj\\CFVSProj.csproj",
       "packagesPath": "C:\\Users\\cbidea\\.nuget\\packages\\",
-      "outputPath": "D:\\projects\\asocssap\\codeforces\\CFVSProj\\CFVSProj\\obj\\",
+      "outputPath": "d:\\projects\\asocssap\\codeforces\\CFVSProj\\CFVSProj\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
