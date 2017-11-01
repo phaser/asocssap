@@ -4,51 +4,27 @@ using System.Text;
 
 class CF_227C
 {
-    public long[] powersOf3 = new long[]
-    {
-          3
-        , 9
-        , 27
-        , 81
-        , 243
-        , 729
-        , 2187
-        , 6561
-        , 19683
-        , 59049
-        , 177147
-        , 531441
-        , 1594323
-        , 4782969
-        , 14348907
-        , 43046721
-        , 129140163
-        , 387420489
-        , 1162261467
-        , 3486784401
-        , 10460353203
-        , 31381059609
-        , 94143178827
-    };
-
     public long solve(long n, long m)
     {
+        long[] powerof3 = new long[32];
         long k = 1;
-        long left = n;
-        Dictionary<long, long> cachedModulos = new Dictionary<long, long>();
-        while (left > 0)
+        long power = 3 % m;
+        for (int i = 0; i < 32; i++)
         {
-            long power = (n % powersOf3.Length);
-            if (cachedModulos.ContainsKey(power - 1))
+            for (int pm = (int)Math.Pow(2, i); pm < (int)Math.Pow(2, i + 1); pm++)
             {
-                k *= cachedModulos[power - 1];
-            } else {
-                long cm = powersOf3[power - 1] % m;
-                cachedModulos[power - 1] = cm;
-                k *= cm;
+                k = (k * power) % m;
             }
-            k %= m;
-            left -= power;
+            powerof3[i] = k; 
+        }
+
+        k = 1;
+        for (int i = 0; i < 32; i++)
+        {
+            if ((n & (1 << i)) != 0)
+            {
+                k *= powerof3[i]; k %= m;
+            }
         }
         return k - 1;
     }
@@ -85,7 +61,7 @@ namespace CodeForces
         [TestMethod]
         public void Test3()
         {
-            Assert.AreEqual(2619146, new CF_227C().solve(331358794, 820674098));
+            Assert.AreEqual(80, new CF_227C().solve(4, 84));
         }
     }
 }
