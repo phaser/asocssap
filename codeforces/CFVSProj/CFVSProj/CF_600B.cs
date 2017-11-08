@@ -6,26 +6,38 @@ class CF_600B
 {
     public string solve(int[] a, int[] b)
     {
-        StringBuilder sb = new StringBuilder();
+        Dictionary<int, int> bindex = new Dictionary<int, int>();
+        Dictionary<int, int> queries = new Dictionary<int, int>();
         Array.Sort(a);
-        foreach (var ts in b)
+        for (int i = 0; i < b.Length; i++)
         {
-            int idx = Array.BinarySearch(a, ts);
-            if (idx < 0)
+            bindex[i] = b[i];
+        }
+        Array.Sort(b);
+        int ai = 0;
+        int bi = 0;
+        while (bi < b.Length)
+        {
+            if (b[bi] < a[ai])
             {
-                sb.Append((~idx)); sb.Append(' ');
-            }
-            else
+                queries[b[bi]] = ai;
+                bi++;
+            } else
             {
-                idx = Array.BinarySearch(a, ts + 1);
-                if (idx < 0)
+                if (ai < a.Length - 1)
                 {
-                    sb.Append(~idx); sb.Append(' ');
+                    ai++;
                 } else
                 {
-                    sb.Append(idx); sb.Append(' ');
+                    queries[b[bi]] = ai + 1;
+                    bi++;
                 }
             }
+        }
+        StringBuilder sb = new StringBuilder();
+        foreach (var kv in bindex)
+        {
+            sb.Append(queries[kv.Value]); sb.Append(' ');
         }
         sb.Remove(sb.Length - 1, 1);
         return sb.ToString();
