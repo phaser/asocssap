@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <vector>
-#include <Python/Python.h>
 
 struct Food
 {
